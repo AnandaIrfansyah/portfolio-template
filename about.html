@@ -1,0 +1,2150 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About - Ananda Irfansyah</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
+        }
+
+        body {
+            background-color: #000000;
+            color: #e0e0e0;
+            overflow-x: hidden;
+        }
+
+        /* Mobile Top Navbar */
+        .mobile-top-navbar {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 70px;
+            background-color: #0a0a0a;
+            border-bottom: 1px solid #1a1a1a;
+            z-index: 1001;
+            padding: 0 1rem;
+            transition: transform 0.3s ease;
+        }
+
+        .mobile-navbar-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 100%;
+        }
+
+        .mobile-profile {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .mobile-profile-img {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            border: 2px solid #2563eb;
+        }
+
+        .mobile-profile-info {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .mobile-profile-name {
+            color: #ffffff;
+            font-weight: 600;
+            font-size: 0.95rem;
+            display: flex;
+            align-items: center;
+            gap: 0.35rem;
+        }
+
+        .mobile-profile-name i {
+            color: #2563eb;
+            font-size: 0.85rem;
+        }
+
+        .mobile-profile-username {
+            color: #6b7280;
+            font-size: 0.75rem;
+        }
+
+        .mobile-navbar-actions {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .mobile-nav-btn {
+            background-color: #0f0f0f;
+            border: 1px solid #1a1a1a;
+            color: #e5e7eb;
+            width: 40px;
+            height: 40px;
+            border-radius: 0.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .mobile-nav-btn:hover {
+            background-color: #1a1a1a;
+            border-color: #2563eb;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 100vh;
+            width: 280px;
+            background-color: #0a0a0a;
+            border-right: 1px solid #1a1a1a;
+            overflow-y: auto;
+            z-index: 1002;
+            display: flex;
+            flex-direction: column;
+            transition: transform 0.3s ease;
+        }
+
+        .sidebar::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        .sidebar::-webkit-scrollbar-track {
+            background: #0a0a0a;
+        }
+
+        .sidebar::-webkit-scrollbar-thumb {
+            background: #1a1a1a;
+            border-radius: 3px;
+        }
+
+        .sidebar-close-btn {
+            display: none;
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background-color: #0f0f0f;
+            border: 1px solid #1a1a1a;
+            color: #e5e7eb;
+            width: 40px;
+            height: 40px;
+            border-radius: 0.5rem;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.2s;
+            z-index: 10;
+        }
+
+        .sidebar-close-btn:hover {
+            background-color: #1a1a1a;
+            border-color: #2563eb;
+        }
+
+        .sidebar-header {
+            padding: 2rem 1.5rem 1.5rem;
+            text-align: center;
+        }
+
+        .profile-img {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid #2563eb;
+            margin-bottom: 1rem;
+        }
+
+        .profile-name {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: #ffffff;
+            margin-bottom: 0.25rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+
+        .verified-badge {
+            color: #2563eb;
+            font-size: 1.1rem;
+        }
+
+        .profile-username {
+            color: #6b7280;
+            font-size: 0.875rem;
+            margin-bottom: 1rem;
+        }
+
+        .status-badge {
+            background-color: #10b981;
+            color: #ffffff;
+            padding: 0.5rem 1rem;
+            border-radius: 0.5rem;
+            font-size: 0.75rem;
+            font-weight: 500;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .status-dot {
+            width: 6px;
+            height: 6px;
+            background-color: #ffffff;
+            border-radius: 50%;
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+
+            0%,
+            100% {
+                opacity: 1;
+            }
+
+            50% {
+                opacity: 0.5;
+            }
+        }
+
+        /* Command Palette Search */
+        .search-box {
+            margin: 0 1rem 1rem;
+            position: relative;
+        }
+
+        .search-input {
+            width: 100%;
+            background-color: #0f0f0f;
+            border: 1px solid #1a1a1a;
+            color: #9ca3af;
+            padding: 0.625rem 1rem 0.625rem 2.5rem;
+            border-radius: 0.5rem;
+            font-size: 0.875rem;
+            transition: all 0.2s;
+            cursor: pointer;
+        }
+
+        .search-input:focus {
+            outline: none;
+            border-color: #2563eb;
+            background-color: #111111;
+        }
+
+        .search-icon {
+            position: absolute;
+            left: 0.875rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #6b7280;
+            font-size: 0.875rem;
+            pointer-events: none;
+        }
+
+        .search-shortcut {
+            position: absolute;
+            right: 0.875rem;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: #1a1a1a;
+            color: #6b7280;
+            padding: 0.125rem 0.375rem;
+            border-radius: 0.25rem;
+            font-size: 0.75rem;
+            font-weight: 500;
+            pointer-events: none;
+        }
+
+        /* Command Palette Modal */
+        .command-palette {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(8px);
+            z-index: 2000;
+            padding: 2rem;
+            animation: fadeIn 0.2s ease;
+        }
+
+        .command-palette.active {
+            display: flex;
+            align-items: flex-start;
+            justify-content: center;
+            padding-top: 5rem;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        .command-palette-content {
+            background-color: #0a0a0a;
+            border: 1px solid #1a1a1a;
+            border-radius: 1rem;
+            width: 100%;
+            max-width: 640px;
+            max-height: 70vh;
+            display: flex;
+            flex-direction: column;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+            animation: slideDown 0.3s ease;
+        }
+
+        @keyframes slideDown {
+            from {
+                transform: translateY(-20px);
+                opacity: 0;
+            }
+
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .command-search-box {
+            padding: 1.25rem;
+            border-bottom: 1px solid #1a1a1a;
+            position: relative;
+        }
+
+        .command-search-input {
+            width: 100%;
+            background-color: transparent;
+            border: none;
+            color: #e5e7eb;
+            font-size: 1rem;
+            padding-left: 2rem;
+            outline: none;
+        }
+
+        .command-search-input::placeholder {
+            color: #6b7280;
+        }
+
+        .command-search-icon {
+            position: absolute;
+            left: 1.25rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #6b7280;
+            font-size: 1rem;
+        }
+
+        .command-results {
+            overflow-y: auto;
+            max-height: 50vh;
+        }
+
+        .command-results::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        .command-results::-webkit-scrollbar-track {
+            background: #0a0a0a;
+        }
+
+        .command-results::-webkit-scrollbar-thumb {
+            background: #1a1a1a;
+            border-radius: 3px;
+        }
+
+        .command-section {
+            padding: 0.75rem 0;
+        }
+
+        .command-section-title {
+            color: #6b7280;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            padding: 0.5rem 1.25rem;
+        }
+
+        .command-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0.875rem 1.25rem;
+            color: #e5e7eb;
+            cursor: pointer;
+            transition: all 0.15s;
+            text-decoration: none;
+        }
+
+        .command-item:hover {
+            background-color: #111111;
+            color: #ffffff;
+        }
+
+        .command-item-left {
+            display: flex;
+            align-items: center;
+            gap: 0.875rem;
+        }
+
+        .command-item-icon {
+            width: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.125rem;
+        }
+
+        .command-item-text {
+            font-size: 0.9rem;
+        }
+
+        .command-item-badge {
+            background-color: #1a1a1a;
+            color: #9ca3af;
+            padding: 0.25rem 0.625rem;
+            border-radius: 0.375rem;
+            font-size: 0.75rem;
+            font-weight: 500;
+        }
+
+        .command-item.current {
+            background-color: #1a1a1a;
+        }
+
+        .command-item.current .command-item-badge {
+            background-color: #374151;
+            color: #d1d5db;
+        }
+
+        /* Sidebar Nav */
+        .sidebar-nav {
+            padding: 0.5rem 0;
+            flex-grow: 1;
+        }
+
+        .nav-item {
+            padding: 0.875rem 1.5rem;
+            color: #9ca3af;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            transition: all 0.2s ease;
+            border-left: 3px solid transparent;
+            cursor: pointer;
+        }
+
+        .nav-item:hover {
+            background-color: #111111;
+            color: #ffffff;
+        }
+
+        .nav-item.active {
+            background-color: #111111;
+            color: #ffffff;
+            border-left-color: #2563eb;
+        }
+
+        .nav-item i {
+            margin-right: 0.875rem;
+            font-size: 1.125rem;
+            width: 20px;
+        }
+
+        .nav-arrow {
+            margin-left: auto;
+            font-size: 0.875rem;
+        }
+
+        .sidebar-footer {
+            padding: 1.5rem;
+            border-top: 1px solid #1a1a1a;
+            font-size: 0.875rem;
+            color: #6b7280;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 0.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-links a {
+            color: #6b7280;
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+
+        .footer-links a:hover {
+            color: #2563eb;
+        }
+
+        /* Language Switcher */
+        .language-switcher {
+            position: fixed;
+            top: 2rem;
+            right: 2rem;
+            z-index: 1001;
+        }
+
+        .lang-toggle {
+            background-color: #0f0f0f;
+            border: 1px solid #1a1a1a;
+            color: #e5e7eb;
+            padding: 0.5rem 1rem;
+            border-radius: 0.5rem;
+            font-size: 0.875rem;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .lang-toggle:hover {
+            background-color: #1a1a1a;
+            border-color: #2563eb;
+        }
+
+        /* Main Content */
+        .main-content {
+            margin-left: 280px;
+            padding: 2rem 3rem;
+            min-height: 100vh;
+            max-width: 1400px;
+        }
+
+        /* About Header */
+        .about-header {
+            padding: 3rem 0 2rem;
+        }
+
+        .about-title {
+            font-size: 3rem;
+            font-weight: 700;
+            color: #ffffff;
+            margin-bottom: 0.75rem;
+            line-height: 1.2;
+        }
+
+        .about-title .highlight {
+            color: #2563eb;
+        }
+
+        .about-subtitle {
+            color: #9ca3af;
+            font-size: 1.125rem;
+            line-height: 1.6;
+            max-width: 700px;
+        }
+
+        /* Tab Navigation */
+        .tab-navigation {
+            display: flex;
+            gap: 0;
+            border-bottom: 1px solid #1a1a1a;
+            margin: 2rem 0;
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+            flex-wrap: nowrap;
+        }
+
+        .tab-navigation::-webkit-scrollbar {
+            height: 0;
+        }
+
+        .tab-item {
+            padding: 1rem 1.5rem;
+            color: #9ca3af;
+            text-decoration: none;
+            font-size: 0.9375rem;
+            font-weight: 500;
+            border-bottom: 2px solid transparent;
+            transition: all 0.2s;
+            white-space: nowrap;
+            cursor: pointer;
+            flex-shrink: 0;
+        }
+
+        .tab-item:hover {
+            color: #ffffff;
+        }
+
+        .tab-item.active {
+            color: #ffffff;
+            border-bottom-color: #2563eb;
+        }
+
+        /* CV Section */
+        .cv-section {
+            background-color: #0f0f0f;
+            border: 1px solid #1a1a1a;
+            border-radius: 1rem;
+            padding: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .cv-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .cv-icon {
+            font-size: 1.5rem;
+            color: #2563eb;
+        }
+
+        .cv-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: #ffffff;
+            margin: 0;
+        }
+
+        .cv-subtitle {
+            color: #9ca3af;
+            font-size: 0.875rem;
+            margin-bottom: 1rem;
+            padding-left: 2.5rem;
+        }
+
+        .cv-note {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.625rem;
+            color: #6b7280;
+            font-size: 0.875rem;
+            margin-bottom: 1.5rem;
+            padding: 0.75rem 1rem;
+            background-color: #0a0a0a;
+            border-radius: 0.5rem;
+            border: 1px solid #1a1a1a;
+        }
+
+        .cv-note i {
+            margin-top: 0.125rem;
+            color: #2563eb;
+        }
+
+        .cv-buttons {
+            display: flex;
+            gap: 0.75rem;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 0.75rem 1.25rem;
+            font-weight: 500;
+            border-radius: 0.5rem;
+            transition: all 0.2s;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.875rem;
+            cursor: pointer;
+            text-decoration: none;
+            border: none;
+        }
+
+        .btn-outline {
+            background-color: #1a1a1a;
+            border: 1px solid #262626;
+            color: #e5e7eb;
+        }
+
+        .btn-outline:hover {
+            background-color: #262626;
+            border-color: #2563eb;
+            color: #ffffff;
+            transform: translateY(-2px);
+        }
+
+        /* Content Card */
+        .content-card {
+            background-color: #0f0f0f;
+            border: 1px solid #1a1a1a;
+            border-radius: 1rem;
+            padding: 2.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .status-tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background-color: rgba(16, 185, 129, 0.1);
+            color: #10b981;
+            padding: 0.5rem 1rem;
+            border-radius: 0.5rem;
+            font-size: 0.8125rem;
+            font-weight: 500;
+            margin-bottom: 2rem;
+            border: 1px solid rgba(16, 185, 129, 0.2);
+        }
+
+        .status-tag i {
+            font-size: 0.5rem;
+        }
+
+        .content-title {
+            font-size: 1.75rem;
+            font-weight: 600;
+            color: #ffffff;
+            margin-bottom: 1.5rem;
+            line-height: 1.3;
+        }
+
+        .content-text {
+            color: #d1d5db;
+            line-height: 1.8;
+            margin-bottom: 1.25rem;
+            font-size: 0.9375rem;
+        }
+
+        .content-closing {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: #2563eb;
+            margin-top: 2rem;
+        }
+
+        /* Timeline Item */
+        .timeline-item {
+            background-color: #0f0f0f;
+            border: 1px solid #1a1a1a;
+            border-radius: 1rem;
+            padding: 2rem;
+            margin-bottom: 1.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .timeline-item:hover {
+            border-color: #2563eb;
+            box-shadow: 0 4px 20px rgba(37, 99, 235, 0.1);
+        }
+
+        .timeline-header {
+            display: flex;
+            align-items: flex-start;
+            gap: 1.25rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .timeline-logo {
+            width: 56px;
+            height: 56px;
+            border-radius: 0.75rem;
+            object-fit: cover;
+            background-color: #1a1a1a;
+            border: 1px solid #262626;
+            flex-shrink: 0;
+        }
+
+        .timeline-info {
+            flex: 1;
+        }
+
+        .timeline-title {
+            font-size: 1.125rem;
+            font-weight: 600;
+            color: #ffffff;
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            line-height: 1.4;
+        }
+
+        .timeline-link {
+            color: #6b7280;
+            font-size: 0.875rem;
+            transition: color 0.2s;
+        }
+
+        .timeline-link:hover {
+            color: #2563eb;
+        }
+
+        .timeline-company {
+            color: #9ca3af;
+            font-size: 0.875rem;
+            font-style: italic;
+            margin-bottom: 0.5rem;
+        }
+
+        .timeline-location {
+            display: flex;
+            align-items: center;
+            gap: 0.375rem;
+            color: #9ca3af;
+            font-size: 0.875rem;
+        }
+
+        .timeline-date {
+            color: #2563eb;
+            font-size: 0.875rem;
+            font-weight: 500;
+            margin-left: auto;
+            white-space: nowrap;
+        }
+
+        .timeline-meta {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+            margin-top: 0.75rem;
+        }
+
+        .meta-item {
+            display: flex;
+            align-items: center;
+            gap: 0.375rem;
+            color: #9ca3af;
+            font-size: 0.875rem;
+        }
+
+        .meta-item i {
+            font-size: 0.875rem;
+        }
+
+        .timeline-role {
+            font-weight: 500;
+            color: #ffffff;
+            font-size: 1rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .timeline-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.375rem;
+            background-color: rgba(16, 185, 129, 0.1);
+            color: #10b981;
+            padding: 0.25rem 0.75rem;
+            border-radius: 0.375rem;
+            font-size: 0.75rem;
+            font-weight: 500;
+            margin-left: 0.5rem;
+            border: 1px solid rgba(16, 185, 129, 0.2);
+        }
+
+        .timeline-badge i {
+            font-size: 0.5rem;
+        }
+
+        .timeline-divider {
+            margin: 1.5rem 0;
+            height: 1px;
+            background-color: #1a1a1a;
+        }
+
+        .achievements-toggle {
+            background-color: #1a1a1a;
+            border: 1px solid #262626;
+            color: #e5e7eb;
+            padding: 0.625rem 1rem;
+            border-radius: 0.5rem;
+            font-size: 0.875rem;
+            cursor: pointer;
+            transition: all 0.2s;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+
+        .achievements-toggle:hover {
+            background-color: #262626;
+            border-color: #374151;
+        }
+
+        .achievements-toggle i {
+            transition: transform 0.2s;
+        }
+
+        .achievements-list {
+            display: none;
+            margin-top: 1.25rem;
+            padding-left: 0.5rem;
+        }
+
+        .achievements-list.show {
+            display: block;
+        }
+
+        .achievement-item {
+            color: #d1d5db;
+            font-size: 0.9375rem;
+            line-height: 1.7;
+            margin-bottom: 0.75rem;
+            padding-left: 1.25rem;
+            position: relative;
+        }
+
+        .achievement-item:before {
+            content: "•";
+            position: absolute;
+            left: 0;
+            color: #2563eb;
+            font-size: 1.25rem;
+        }
+
+        .credential-actions {
+            display: flex;
+            gap: 0.75rem;
+            flex-wrap: wrap;
+            margin-top: 1rem;
+        }
+
+        .credential-actions .btn {
+            padding: 0.625rem 1rem;
+            font-size: 0.875rem;
+        }
+
+        /* Back to Top Button */
+        .back-to-top {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, rgba(15, 15, 15, 0.95) 0%, rgba(26, 26, 26, 0.95) 100%);
+            border: 1px solid rgba(107, 114, 128, 0.3);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(20px);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            z-index: 999;
+            backdrop-filter: blur(10px);
+        }
+
+        .back-to-top.show {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .back-to-top:hover {
+            background: linear-gradient(135deg, rgba(37, 99, 235, 0.2) 0%, rgba(37, 99, 235, 0.3) 100%);
+            border-color: rgba(37, 99, 235, 0.5);
+            transform: translateY(-5px) scale(1.1);
+        }
+
+        .back-to-top i {
+            color: #ffffff;
+            font-size: 1.25rem;
+            animation: bounce-up 2s ease-in-out infinite;
+        }
+
+        @keyframes bounce-up {
+
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-4px);
+            }
+        }
+
+        .mobile-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            z-index: 1001;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            pointer-events: none;
+        }
+
+        .mobile-overlay.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        /* Responsive */
+        @media (max-width: 991px) {
+            .mobile-top-navbar {
+                display: block;
+            }
+
+            .sidebar {
+                transform: translateX(-100%);
+            }
+
+            .sidebar.show {
+                transform: translateX(0);
+            }
+
+            .sidebar-close-btn {
+                display: flex;
+            }
+
+            .mobile-overlay {
+                display: block;
+            }
+
+            .main-content {
+                margin-left: 0;
+                padding: 2rem 1.5rem;
+                margin-top: 70px;
+            }
+
+            .about-title {
+                font-size: 2.25rem;
+            }
+
+            .language-switcher {
+                display: none;
+            }
+
+            .tab-navigation {
+                margin-left: -1.5rem;
+                margin-right: -1.5rem;
+                padding: 0 1.5rem;
+            }
+
+            .cv-section {
+                padding: 1.5rem;
+            }
+
+            .cv-buttons {
+                flex-direction: row;
+            }
+
+            .btn {
+                width: auto;
+                flex: 1;
+                min-width: 0;
+                justify-content: center;
+            }
+
+            .content-card {
+                padding: 1.5rem;
+            }
+
+            .timeline-item {
+                padding: 1.5rem;
+            }
+
+            .timeline-header {
+                flex-direction: row;
+            }
+
+            .timeline-date {
+                margin-left: 0;
+                margin-top: 0.5rem;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .about-title {
+                font-size: 1.875rem;
+            }
+
+            .tab-item {
+                padding: 0.75rem 0.875rem;
+                font-size: 0.8125rem;
+            }
+
+            .timeline-logo {
+                width: 48px;
+                height: 48px;
+            }
+
+            .timeline-meta {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 0.5rem;
+            }
+
+            .back-to-top {
+                bottom: 1.5rem;
+                right: 1.5rem;
+                width: 45px;
+                height: 45px;
+            }
+
+            .back-to-top i {
+                font-size: 1.125rem;
+            }
+
+            .content-title {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Mobile Top Navbar -->
+    <nav class="mobile-top-navbar">
+        <div class="mobile-navbar-content">
+            <div class="mobile-profile">
+                <img src="img/hero.png" alt="Profile" class="mobile-profile-img">
+                <div class="mobile-profile-info">
+                    <div class="mobile-profile-name">
+                        Ananda Irfansyah
+                        <i class="bi bi-patch-check-fill"></i>
+                    </div>
+                    <div class="mobile-profile-username">@anndairfnsyh_</div>
+                </div>
+            </div>
+            <div class="mobile-navbar-actions">
+                <button class="mobile-nav-btn" onclick="toggleMobileMenu()">
+                    <i class="bi bi-list"></i>
+                </button>
+                <button class="mobile-nav-btn" onclick="toggleLanguage()">
+                    <i class="bi bi-globe"></i>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Mobile Overlay -->
+    <div class="mobile-overlay" id="mobileOverlay" onclick="toggleMobileMenu()"></div>
+
+    <!-- Language Switcher (Desktop only) -->
+    <div class="language-switcher">
+        <button class="lang-toggle" onclick="toggleLanguage()">
+            <i class="bi bi-globe"></i>
+            <span id="currentLang">EN</span>
+        </button>
+    </div>
+
+    <!-- Command Palette Modal -->
+    <div class="command-palette" id="commandPalette" onclick="closeCommandPalette(event)">
+        <div class="command-palette-content" onclick="event.stopPropagation()">
+            <div class="command-search-box">
+                <i class="bi bi-search command-search-icon"></i>
+                <input type="text" class="command-search-input" placeholder="Search pages, socials, or links..."
+                    id="commandSearchInput" autofocus>
+            </div>
+            <div class="command-results" id="commandResults">
+                <div class="command-section">
+                    <div class="command-section-title">PAGES</div>
+                    <a href="home.html" class="command-item">
+                        <div class="command-item-left">
+                            <i class="bi bi-house-door-fill command-item-icon"></i>
+                            <span class="command-item-text">Home</span>
+                        </div>
+                        <span class="command-item-badge">Pages</span>
+                    </a>
+                    <a href="projects.html" class="command-item">
+                        <div class="command-item-left">
+                            <i class="bi bi-kanban command-item-icon"></i>
+                            <span class="command-item-text">Projects</span>
+                        </div>
+                        <span class="command-item-badge">Pages</span>
+                    </a>
+                    <a href="blog.html" class="command-item">
+                        <div class="command-item-left">
+                            <i class="bi bi-rss command-item-icon"></i>
+                            <span class="command-item-text">Blog</span>
+                        </div>
+                        <span class="command-item-badge">Pages</span>
+                    </a>
+                    <a href="about.html" class="command-item current">
+                        <div class="command-item-left">
+                            <i class="bi bi-person command-item-icon"></i>
+                            <span class="command-item-text">About</span>
+                        </div>
+                        <span class="command-item-badge">You are here</span>
+                    </a>
+                    <a href="contact.html" class="command-item">
+                        <div class="command-item-left">
+                            <i class="bi bi-envelope command-item-icon"></i>
+                            <span class="command-item-text">Contact</span>
+                        </div>
+                        <span class="command-item-badge">Pages</span>
+                    </a>
+                    <a href="guestbook.html" class="command-item">
+                        <div class="command-item-left">
+                            <i class="bi bi-chat-left-quote command-item-icon"></i>
+                            <span class="command-item-text">Guestbook</span>
+                        </div>
+                        <span class="command-item-badge">Pages</span>
+                    </a>
+                </div>
+                <div class="command-section">
+                    <div class="command-section-title">SOCIALS</div>
+                    <a href="mailto:ananda@example.com" class="command-item">
+                        <div class="command-item-left">
+                            <i class="bi bi-envelope-fill command-item-icon"></i>
+                            <span class="command-item-text">Email</span>
+                        </div>
+                        <span class="command-item-badge">Link</span>
+                    </a>
+                    <a href="https://github.com/anandairfansyah" target="_blank" class="command-item">
+                        <div class="command-item-left">
+                            <i class="bi bi-github command-item-icon"></i>
+                            <span class="command-item-text">GitHub</span>
+                        </div>
+                        <span class="command-item-badge">Link</span>
+                    </a>
+                    <a href="https://linkedin.com/in/anandairfansyah" target="_blank" class="command-item">
+                        <div class="command-item-left">
+                            <i class="bi bi-linkedin command-item-icon"></i>
+                            <span class="command-item-text">LinkedIn</span>
+                        </div>
+                        <span class="command-item-badge">Link</span>
+                    </a>
+                    <a href="https://instagram.com/anndairfnsyh_" target="_blank" class="command-item">
+                        <div class="command-item-left">
+                            <i class="bi bi-instagram command-item-icon"></i>
+                            <span class="command-item-text">Instagram</span>
+                        </div>
+                        <span class="command-item-badge">Link</span>
+                    </a>
+                    <a href="https://twitter.com/anandairfansyah" target="_blank" class="command-item">
+                        <div class="command-item-left">
+                            <i class="bi bi-twitter-x command-item-icon"></i>
+                            <span class="command-item-text">X (Twitter)</span>
+                        </div>
+                        <span class="command-item-badge">Link</span>
+                    </a>
+                </div>
+                <div class="command-section">
+                    <div class="command-section-title">EXTERNAL LINKS</div>
+                    <a href="#" class="command-item">
+                        <div class="command-item-left">
+                            <i class="bi bi-heart-fill command-item-icon"></i>
+                            <span class="command-item-text">Support</span>
+                        </div>
+                        <span class="command-item-badge">Link</span>
+                    </a>
+                    <a href="#" class="command-item">
+                        <div class="command-item-left">
+                            <i class="bi bi-file-pdf command-item-icon"></i>
+                            <span class="command-item-text">CV PDF</span>
+                        </div>
+                        <span class="command-item-badge">Link</span>
+                    </a>
+                    <a href="#" class="command-item">
+                        <div class="command-item-left">
+                            <i class="bi bi-file-word command-item-icon"></i>
+                            <span class="command-item-text">CV Word</span>
+                        </div>
+                        <span class="command-item-badge">Link</span>
+                    </a>
+                    <a href="#" class="command-item">
+                        <div class="command-item-left">
+                            <i class="bi bi-files command-item-icon"></i>
+                            <span class="command-item-text">CV Copy</span>
+                        </div>
+                        <span class="command-item-badge">Link</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Sidebar -->
+    <aside class="sidebar" id="sidebar">
+        <!-- Close button (mobile only) -->
+        <button class="sidebar-close-btn" onclick="toggleMobileMenu()">
+            <i class="bi bi-x-lg"></i>
+        </button>
+
+        <div class="sidebar-header">
+            <img src="img/hero.png" alt="Profile" class="profile-img">
+            <div class="profile-name">
+                Ananda Irfansyah
+                <i class="bi bi-patch-check-fill verified-badge"></i>
+            </div>
+            <div class="profile-username">@anndairfnsyh_</div>
+            <span class="status-badge">
+                <span class="status-dot"></span>
+                <span>Open to Work</span>
+            </span>
+        </div>
+
+        <div class="search-box">
+            <i class="bi bi-search search-icon"></i>
+            <input type="text" class="search-input" placeholder="Search" onclick="openCommandPalette()" readonly>
+            <span class="search-shortcut">⌘K</span>
+        </div>
+
+        <nav class="sidebar-nav">
+            <a href="home.html" class="nav-item" onclick="closeMobileMenu(event)">
+                <i class="bi bi-house-door-fill"></i>
+                <span>Home</span>
+            </a>
+            <a href="projects.html" class="nav-item" onclick="closeMobileMenu(event)">
+                <i class="bi bi-kanban"></i>
+                <span>Projects</span>
+            </a>
+            <a href="blog.html" class="nav-item" onclick="closeMobileMenu(event)">
+                <i class="bi bi-rss"></i>
+                <span>Blog</span>
+            </a>
+            <a href="about.html" class="nav-item active" onclick="closeMobileMenu(event)">
+                <i class="bi bi-person"></i>
+                <span>About</span>
+                <i class="bi bi-arrow-right nav-arrow"></i>
+            </a>
+            <a href="contact.html" class="nav-item" onclick="closeMobileMenu(event)">
+                <i class="bi bi-envelope"></i>
+                <span>Contact</span>
+            </a>
+            <a href="guestbook.html" class="nav-item" onclick="closeMobileMenu(event)">
+                <i class="bi bi-chat-left-quote"></i>
+                <span>Guestbook</span>
+            </a>
+        </nav>
+
+        <div class="sidebar-footer">
+            <div class="footer-links">
+                <a href="#">OpenHire</a>
+                <span>•</span>
+                <a href="#">Privacy</a>
+            </div>
+            <div>&copy; 2025 Ananda Irfansyah</div>
+        </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="container-fluid px-0">
+            <!-- About Header -->
+            <section class="about-header">
+                <h1 class="about-title">
+                    About <span class="highlight">Me</span>
+                </h1>
+                <p class="about-subtitle">
+                    Built on belief and shaped through code. This is the path I've taken, and the trace I continue
+                    leaving.
+                </p>
+            </section>
+
+            <!-- Tab Navigation -->
+            <div class="tab-navigation">
+                <a href="#intro" class="tab-item active" data-tab="intro">Intro</a>
+                <a href="#experiences" class="tab-item" data-tab="experiences">Experiences</a>
+                <a href="#educations" class="tab-item" data-tab="educations">Educations</a>
+                <a href="#certifications" class="tab-item" data-tab="certifications">Certifications</a>
+            </div>
+
+            <!-- Intro Section -->
+            <div class="content-section" id="intro-section">
+                <!-- CV Download -->
+                <div class="cv-section">
+                    <div class="cv-header">
+                        <i class="bi bi-file-earmark-text cv-icon"></i>
+                        <h3 class="cv-title">Curriculum Vitae</h3>
+                    </div>
+                    <p class="cv-subtitle">Access my CV in different formats</p>
+                    <div class="cv-note">
+                        <i class="bi bi-info-circle"></i>
+                        <span>View in PDF, Word format, or get the editable template</span>
+                    </div>
+                    <div class="cv-buttons">
+                        <a href="#" class="btn btn-outline">
+                            <i class="bi bi-file-pdf"></i>
+                            <span>PDF</span>
+                        </a>
+                        <a href="#" class="btn btn-outline">
+                            <i class="bi bi-file-word"></i>
+                            <span>Latest (Word)</span>
+                        </a>
+                        <a href="#" class="btn btn-outline">
+                            <i class="bi bi-files"></i>
+                            <span>Copy CV</span>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Introduction -->
+                <div class="content-card">
+                    <div class="status-tag">
+                        <i class="bi bi-circle-fill"></i>
+                        <span>Currently Open to Work</span>
+                    </div>
+                    <h2 class="content-title">Assalamu'alaikum</h2>
+                    <p class="content-text">
+                        I am Ananda, known as anandairfansyah. A Python developer with hands-on experience in machine
+                        learning and web development from Central Java, Indonesia. I lead Copilot ID, my creative hub
+                        for building intelligent systems and web applications with Django, Flask, and ML tools with
+                        PyTorch and TensorFlow, crafting each project with purpose.
+                    </p>
+                    <p class="content-text">
+                        Outside of tech, I've been on a spiritual journey that shaped how I think and work. I've
+                        memorized nearly 30 Juz of the Quran, a path that taught me discipline, clarity, and resilience.
+                        These qualities naturally influence how I approach coding and mentorship.
+                    </p>
+                    <p class="content-text">
+                        In my professional experience, I've mentored over 50 aspiring developers through DBS
+                        Foundation's Coding Camp, helping them grow in Python and soft skills. At GAOTek Inc., I
+                        supported more than 100 interns as they took their first steps into the tech world. So far, I've
+                        completed over 40 projects, ranging from AI models to full-stack web apps.
+                    </p>
+                    <p class="content-text">
+                        My academic journey began at Al Mukmin Islamic Boarding School, where I focused on Islamic
+                        studies. Later, I earned a bachelor's degree in informatics with a concentration in Intelligent
+                        Systems (AI) from the University of Technology Yogyakarta, graduating with a GPA of 3.58.
+                    </p>
+                    <p class="content-text">
+                        I stay sharply focused on both AI advancements and Indonesia's financial market—especially
+                        IHSG—to stay ahead in tech, achieve financial freedom as soon as possible, and enjoy the fruits
+                        of my work in retirement.
+                    </p>
+                    <p class="content-text">
+                        Looking forward, my vision is to elevate Copilot ID, contribute meaningfully to open-source
+                        communities, and harness AI to address impactful challenges with precision and integrity. I am
+                        committed to fostering innovation that drives sustainable progress.
+                    </p>
+                    <p class="content-text">
+                        If you have a visionary idea or wish to explore the possibilities of technology, I'd be
+                        delighted to connect and create something transformative together. 🚀
+                    </p>
+                    <h3 class="content-closing">Wassalamu'alaikum!</h3>
+                </div>
+            </div>
+
+            <!-- Experiences Section -->
+            <div class="content-section" id="experiences-section" style="display: none;">
+                <!-- Experience 1: Copilot ID -->
+                <div class="timeline-item">
+                    <div class="timeline-header">
+                        <img src="https://via.placeholder.com/56" alt="Copilot ID" class="timeline-logo">
+                        <div class="timeline-info">
+                            <div class="timeline-title">
+                                Copilot ID
+                                <i class="bi bi-box-arrow-up-right timeline-link"></i>
+                            </div>
+                            <div class="timeline-location">
+                                <i class="bi bi-geo-alt"></i>
+                                <span>1 position</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="timeline-role">
+                        Founder (Personal Projects)
+                        <span class="timeline-badge">
+                            <i class="bi bi-circle-fill"></i>
+                            Current
+                        </span>
+                    </div>
+                    <div class="timeline-meta">
+                        <span class="meta-item">
+                            <i class="bi bi-calendar"></i>
+                            Jan 2023 - Present
+                        </span>
+                        <span class="meta-item">
+                            <i class="bi bi-briefcase"></i>
+                            Self-employed
+                        </span>
+                        <span class="meta-item">
+                            <i class="bi bi-laptop"></i>
+                            On-site · Boyolali, Indonesia
+                        </span>
+                    </div>
+                    <button class="achievements-toggle" onclick="toggleAchievements(this)">
+                        <i class="bi bi-chevron-down"></i>
+                        <span>Show Achievements</span>
+                    </button>
+                    <div class="achievements-list">
+                        <div class="achievement-item">Collaborative Python Innovations and Learning for Optimal
+                            Technologies.</div>
+                        <div class="achievement-item">Averaging 15.66k unique visitors, 262.07k total requests, and 33k
+                            active users over 30 days, with 161+ GitHub stars across public repositories.</div>
+                        <div class="achievement-item">Executed AI-driven projects using Django, TensorFlow, PyTorch, and
+                            modern web technologies.</div>
+                        <div class="achievement-item">Leveraged vast experience across 15+ full-cycle projects including
+                            MTV architecture, ORM, REST APIs, authentication, testing, and debugging.</div>
+                        <div class="achievement-item">Built and deployed 11 Flask-based applications with scalable
+                            routing and Jinja2 templating.</div>
+                        <div class="achievement-item">Developed 81 end-to-end neural network systems involving
+                            preprocessing, feature engineering, model tuning, evaluation, distributed training, and
+                            deployment.</div>
+                        <div class="achievement-item">Applied a broad tech stack: Python, PHP, JavaScript, Netlify,
+                            Django, Flask, React, Next.js, Node.js, WordPress, MaterialUI, Tailwindcss, Laravel,
+                            TensorFlow, PyGame, Keras, Scikit-learn, HTML/CSS, SQL, NoSQL, GitHub, DBF, Postman,
+                            GraphQL, and Cloudflare.</div>
+                    </div>
+                </div>
+
+                <!-- Experience 2: IKA-PPIM 2021 -->
+                <div class="timeline-item">
+                    <div class="timeline-header">
+                        <img src="https://via.placeholder.com/56" alt="IKA-PPIM 2021" class="timeline-logo">
+                        <div class="timeline-info">
+                            <div class="timeline-title">
+                                IKA-PPIM 2021
+                                <i class="bi bi-box-arrow-up-right timeline-link"></i>
+                            </div>
+                            <div class="timeline-location">
+                                <i class="bi bi-geo-alt"></i>
+                                <span>1 position</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="timeline-role">
+                        Chief Secretary
+                        <span class="timeline-badge">
+                            <i class="bi bi-circle-fill"></i>
+                            Current
+                        </span>
+                    </div>
+                    <div class="timeline-meta">
+                        <span class="meta-item">
+                            <i class="bi bi-calendar"></i>
+                            Sep 2021 - Present
+                        </span>
+                        <span class="meta-item">
+                            <i class="bi bi-briefcase"></i>
+                            Part-time
+                        </span>
+                        <span class="meta-item">
+                            <i class="bi bi-laptop"></i>
+                            Remote · Surakarta, Indonesia
+                        </span>
+                    </div>
+                </div>
+
+                <!-- Experience 3: Coding Camp -->
+                <div class="timeline-item">
+                    <div class="timeline-header">
+                        <img src="https://via.placeholder.com/56" alt="DBS Foundation" class="timeline-logo">
+                        <div class="timeline-info">
+                            <div class="timeline-title">
+                                Coding Camp powered by DBS Foundation
+                                <i class="bi bi-box-arrow-up-right timeline-link"></i>
+                            </div>
+                            <div class="timeline-location">
+                                <i class="bi bi-geo-alt"></i>
+                                <span>5 positions</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="timeline-role">Machine Learning Mentor</div>
+                    <div class="timeline-meta">
+                        <span class="meta-item">
+                            <i class="bi bi-calendar"></i>
+                            Feb 2025 - Jul 2025
+                        </span>
+                        <span class="meta-item">
+                            <i class="bi bi-briefcase"></i>
+                            Part-time
+                        </span>
+                        <span class="meta-item">
+                            <i class="bi bi-laptop"></i>
+                            Remote · Bandung, Indonesia
+                        </span>
+                    </div>
+                    <div class="timeline-divider"></div>
+                    <div class="timeline-role">Machine Learning Ops Cohort</div>
+                    <div class="timeline-meta">
+                        <span class="meta-item">
+                            <i class="bi bi-calendar"></i>
+                            Dec 2024 - Jun 2025
+                        </span>
+                        <span class="meta-item">
+                            <i class="bi bi-award"></i>
+                            Scholarship
+                        </span>
+                        <span class="meta-item">
+                            <i class="bi bi-laptop"></i>
+                            Remote · Bandung, Indonesia
+                        </span>
+                    </div>
+                    <div class="timeline-divider"></div>
+                    <div class="timeline-role">Machine Learning Expert Cohort</div>
+                    <div class="timeline-meta">
+                        <span class="meta-item">
+                            <i class="bi bi-calendar"></i>
+                            Oct 2024 - Dec 2024
+                        </span>
+                        <span class="meta-item">
+                            <i class="bi bi-award"></i>
+                            Scholarship
+                        </span>
+                        <span class="meta-item">
+                            <i class="bi bi-laptop"></i>
+                            Remote · Bandung, Indonesia
+                        </span>
+                    </div>
+                    <div class="timeline-divider"></div>
+                    <div class="timeline-role">Machine Learning Intermediate Cohort</div>
+                    <div class="timeline-meta">
+                        <span class="meta-item">
+                            <i class="bi bi-calendar"></i>
+                            Jul 2024 - Sep 2024
+                        </span>
+                        <span class="meta-item">
+                            <i class="bi bi-award"></i>
+                            Scholarship
+                        </span>
+                        <span class="meta-item">
+                            <i class="bi bi-laptop"></i>
+                            Remote · Bandung, Indonesia
+                        </span>
+                    </div>
+                    <div class="timeline-divider"></div>
+                    <div class="timeline-role">Machine Learning Beginner Cohort</div>
+                    <div class="timeline-meta">
+                        <span class="meta-item">
+                            <i class="bi bi-calendar"></i>
+                            Jan 2024 - Jun 2024
+                        </span>
+                        <span class="meta-item">
+                            <i class="bi bi-award"></i>
+                            Scholarship
+                        </span>
+                        <span class="meta-item">
+                            <i class="bi bi-laptop"></i>
+                            Remote · Bandung, Indonesia
+                        </span>
+                    </div>
+                </div>
+
+                <!-- Add other experiences similarly -->
+            </div>
+
+            <!-- Educations Section -->
+            <div class="content-section" id="educations-section" style="display: none;">
+                <!-- Education 1 -->
+                <div class="timeline-item">
+                    <div class="timeline-header">
+                        <img src="https://via.placeholder.com/56" alt="UTY" class="timeline-logo">
+                        <div class="timeline-info">
+                            <div class="timeline-title">Informatics in Intelligence Systems (S.Kom.)</div>
+                            <div class="timeline-company">Universitas Teknologi Yogyakarta</div>
+                            <div class="timeline-location">
+                                <i class="bi bi-geo-alt"></i>
+                                <span>Sleman, Special Region of Yogyakarta</span>
+                            </div>
+                        </div>
+                        <div class="timeline-date">Sep 2021 - Aug 2025</div>
+                    </div>
+                    <button class="achievements-toggle" onclick="toggleAchievements(this)">
+                        <i class="bi bi-chevron-down"></i>
+                        <span>Show Achievements</span>
+                    </button>
+                    <div class="achievements-list">
+                        <div class="achievement-item">Established foundational proficiency in algorithms and
+                            object-oriented programming.</div>
+                        <div class="achievement-item">Developed interactive web applications through hands-on coursework
+                            and practical implementation.</div>
+                        <div class="achievement-item">Analyzed large datasets and applied data analytics techniques to
+                            derive actionable insights.</div>
+                        <div class="achievement-item">Enhanced understanding of Machine Learning concepts and gained
+                            exposure to Augmented Reality technologies.</div>
+                        <div class="achievement-item">Mastered core concepts of data structures, algorithms, and neural
+                            networks through applied projects.</div>
+                    </div>
+                </div>
+
+                <!-- Education 2 -->
+                <div class="timeline-item">
+                    <div class="timeline-header">
+                        <img src="https://via.placeholder.com/56" alt="MAN" class="timeline-logo">
+                        <div class="timeline-info">
+                            <div class="timeline-title">Senior High School (Natural Science)</div>
+                            <div class="timeline-company">MAS Al Mukmin Ngruki</div>
+                            <div class="timeline-location">
+                                <i class="bi bi-geo-alt"></i>
+                                <span>Surakarta, Central Java</span>
+                            </div>
+                        </div>
+                        <div class="timeline-date">2018 - 2021</div>
+                    </div>
+                    <button class="achievements-toggle" onclick="toggleAchievements(this)">
+                        <i class="bi bi-chevron-down"></i>
+                        <span>Show Achievements</span>
+                    </button>
+                    <div class="achievements-list">
+                        <div class="achievement-item">Focused on Natural Science curriculum with emphasis on
+                            Mathematics, Physics, Chemistry, and Biology.</div>
+                        <div class="achievement-item">Integrated Islamic studies with modern education methodology.
+                        </div>
+                        <div class="achievement-item">Developed strong analytical and problem-solving skills through
+                            science-based projects.</div>
+                    </div>
+                </div>
+
+                <!-- Education 3 -->
+                <div class="timeline-item">
+                    <div class="timeline-header">
+                        <img src="https://via.placeholder.com/56" alt="MTs" class="timeline-logo">
+                        <div class="timeline-info">
+                            <div class="timeline-title">Junior High School</div>
+                            <div class="timeline-company">MTsS Islam Ngruki</div>
+                            <div class="timeline-location">
+                                <i class="bi bi-geo-alt"></i>
+                                <span>Surakarta, Central Java</span>
+                            </div>
+                        </div>
+                        <div class="timeline-date">2015 - 2018</div>
+                    </div>
+                    <button class="achievements-toggle" onclick="toggleAchievements(this)">
+                        <i class="bi bi-chevron-down"></i>
+                        <span>Show Achievements</span>
+                    </button>
+                    <div class="achievements-list">
+                        <div class="achievement-item">Completed comprehensive Islamic and general education curriculum.
+                        </div>
+                        <div class="achievement-item">Built strong foundation in Arabic language and Quranic studies.
+                        </div>
+                        <div class="achievement-item">Participated in various academic and religious competitions.</div>
+                    </div>
+                </div>
+
+                <!-- Education 4 -->
+                <div class="timeline-item">
+                    <div class="timeline-header">
+                        <img src="https://via.placeholder.com/56" alt="SD" class="timeline-logo">
+                        <div class="timeline-info">
+                            <div class="timeline-title">Elementary School</div>
+                            <div class="timeline-company">SD IT Al Mannan</div>
+                            <div class="timeline-location">
+                                <i class="bi bi-geo-alt"></i>
+                                <span>Boyolali, Central Java</span>
+                            </div>
+                        </div>
+                        <div class="timeline-date">2009 - 2015</div>
+                    </div>
+                    <button class="achievements-toggle" onclick="toggleAchievements(this)">
+                        <i class="bi bi-chevron-down"></i>
+                        <span>Show Achievements</span>
+                    </button>
+                    <div class="achievements-list">
+                        <div class="achievement-item">Established early foundation in Islamic values and academic
+                            excellence.</div>
+                        <div class="achievement-item">Participated in character-building programs and extracurricular
+                            activities.</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Certifications Section -->
+            <div class="content-section" id="certifications-section" style="display: none;">
+                <div class="cv-section">
+                    <div class="cv-header">
+                        <i class="bi bi-linkedin cv-icon"></i>
+                        <h3 class="cv-title">View All 115+ Certifications</h3>
+                    </div>
+                    <p class="cv-subtitle">See my complete certification portfolio on LinkedIn</p>
+                    <div class="cv-buttons">
+                        <a href="#" class="btn btn-outline" target="_blank">
+                            <i class="bi bi-box-arrow-up-right"></i>
+                            <span>View on LinkedIn</span>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Certification 1 -->
+                <div class="timeline-item">
+                    <div class="timeline-header">
+                        <img src="https://via.placeholder.com/56" alt="DBS" class="timeline-logo">
+                        <div class="timeline-info">
+                            <div class="timeline-title">Certificate of Appreciation for Machine Learning Mentoring</div>
+                            <div class="timeline-company">Coding Camp powered by DBS Foundation</div>
+                        </div>
+                        <div class="timeline-date">Jul 2025</div>
+                    </div>
+                    <div class="credential-actions">
+                        <button class="achievements-toggle" onclick="toggleAchievements(this)">
+                            <i class="bi bi-chevron-down"></i>
+                            <span>Show Achievements</span>
+                        </button>
+                        <a href="#" class="btn btn-outline achievements-toggle">
+                            <i class="bi bi-box-arrow-up-right"></i>
+                            <span>View Credential</span>
+                        </a>
+                    </div>
+                    <div class="achievements-list">
+                        <div class="achievement-item">Led weekly mentoring for 24 students, achieving a 75% graduation
+                            rate with consistent 84% attendance.</div>
+                        <div class="achievement-item">Designed and delivered alternating sessions on soft and technical
+                            skills (2 hours/week) for 50 participants.</div>
+                        <div class="achievement-item">Managed end-to-end facilitation, including content preparation,
+                            moderator coordination, and cohort engagement tracking.</div>
+                    </div>
+                </div>
+
+                <!-- Certification 2 -->
+                <div class="timeline-item">
+                    <div class="timeline-header">
+                        <img src="https://via.placeholder.com/56" alt="LinkedIn" class="timeline-logo">
+                        <div class="timeline-info">
+                            <div class="timeline-title">Crafting REST APIs with Django</div>
+                            <div class="timeline-company">LinkedIn Learning</div>
+                        </div>
+                        <div class="timeline-date">Dec 2024</div>
+                    </div>
+                    <div class="credential-actions">
+                        <button class="achievements-toggle" onclick="toggleAchievements(this)">
+                            <i class="bi bi-chevron-down"></i>
+                            <span>Show Achievements</span>
+                        </button>
+                        <a href="#" class="btn btn-outline achievements-toggle">
+                            <i class="bi bi-box-arrow-up-right"></i>
+                            <span>View Credential</span>
+                        </a>
+                    </div>
+                    <div class="achievements-list">
+                        <div class="achievement-item">Mastered Django REST Framework for building scalable APIs.</div>
+                        <div class="achievement-item">Implemented authentication, serialization, and API versioning best
+                            practices.</div>
+                    </div>
+                </div>
+
+                <!-- Certification 3 -->
+                <div class="timeline-item">
+                    <div class="timeline-header">
+                        <img src="https://via.placeholder.com/56" alt="Dicoding" class="timeline-logo">
+                        <div class="timeline-info">
+                            <div class="timeline-title">Applied Machine Learning</div>
+                            <div class="timeline-company">Dicoding Indonesia</div>
+                        </div>
+                        <div class="timeline-date">Dec 2024</div>
+                    </div>
+                    <div class="credential-actions">
+                        <button class="achievements-toggle" onclick="toggleAchievements(this)">
+                            <i class="bi bi-chevron-down"></i>
+                            <span>Show Achievements</span>
+                        </button>
+                        <a href="#" class="btn btn-outline">
+                            <i class="bi bi-box-arrow-up-right"></i>
+                            <span>View Credential</span>
+                        </a>
+                    </div>
+                    <div class="achievements-list">
+                        <div class="achievement-item">Deep learning with TensorFlow and Keras frameworks.</div>
+                        <div class="achievement-item">Computer vision and natural language processing implementations.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Certification 4 -->
+                <div class="timeline-item">
+                    <div class="timeline-header">
+                        <img src="https://via.placeholder.com/56" alt="Dicoding" class="timeline-logo">
+                        <div class="timeline-info">
+                            <div class="timeline-title">Learning Data Analysis with Python</div>
+                            <div class="timeline-company">Dicoding Indonesia</div>
+                        </div>
+                        <div class="timeline-date">Nov 2024</div>
+                    </div>
+                    <div class="credential-actions">
+                        <button class="achievements-toggle" onclick="toggleAchievements(this)">
+                            <i class="bi bi-chevron-down"></i>
+                            <span>Show Achievements</span>
+                        </button>
+                        <a href="#" class="btn btn-outline">
+                            <i class="bi bi-box-arrow-up-right"></i>
+                            <span>View Credential</span>
+                        </a>
+                    </div>
+                    <div class="achievements-list">
+                        <div class="achievement-item">Data manipulation with Pandas and NumPy libraries.</div>
+                        <div class="achievement-item">Data visualization with Matplotlib and Seaborn.</div>
+                    </div>
+                </div>
+
+                <!-- Certification 5 -->
+                <div class="timeline-item">
+                    <div class="timeline-header">
+                        <img src="https://via.placeholder.com/56" alt="LinkedIn" class="timeline-logo">
+                        <div class="timeline-info">
+                            <div class="timeline-title">Building a Portfolio with Django</div>
+                            <div class="timeline-company">LinkedIn Learning</div>
+                        </div>
+                        <div class="timeline-date">Oct 2023</div>
+                    </div>
+                    <div class="credential-actions">
+                        <button class="achievements-toggle" onclick="toggleAchievements(this)">
+                            <i class="bi bi-chevron-down"></i>
+                            <span>Show Achievements</span>
+                        </button>
+                        <a href="#" class="btn btn-outline">
+                            <i class="bi bi-box-arrow-up-right"></i>
+                            <span>View Credential</span>
+                        </a>
+                    </div>
+                    <div class="achievements-list">
+                        <div class="achievement-item">Built portfolio website using Django framework.</div>
+                        <div class="achievement-item">Implemented models, views, and templates architecture.</div>
+                    </div>
+                </div>
+
+                <!-- Certification 6 -->
+                <div class="timeline-item">
+                    <div class="timeline-header">
+                        <img src="https://via.placeholder.com/56" alt="RapidMiner" class="timeline-logo">
+                        <div class="timeline-info">
+                            <div class="timeline-title">Machine Learning Professional Certification</div>
+                            <div class="timeline-company">Altair RapidMiner</div>
+                        </div>
+                        <div class="timeline-date">Jun 2023</div>
+                    </div>
+                    <div class="credential-actions">
+                        <button class="achievements-toggle" onclick="toggleAchievements(this)">
+                            <i class="bi bi-chevron-down"></i>
+                            <span>Show Achievements</span>
+                        </button>
+                        <a href="#" class="btn btn-outline">
+                            <i class="bi bi-box-arrow-up-right"></i>
+                            <span>View Credential</span>
+                        </a>
+                    </div>
+                    <div class="achievements-list">
+                        <div class="achievement-item">Professional certification in machine learning methodologies.
+                        </div>
+                        <div class="achievement-item">Advanced model building and evaluation techniques.</div>
+                    </div>
+                </div>
+
+                <!-- Certification 7 -->
+                <div class="timeline-item">
+                    <div class="timeline-header">
+                        <img src="https://via.placeholder.com/56" alt="RapidMiner" class="timeline-logo">
+                        <div class="timeline-info">
+                            <div class="timeline-title">Data Engineering Professional Certification</div>
+                            <div class="timeline-company">Altair RapidMiner</div>
+                        </div>
+                        <div class="timeline-date">Jan 2023</div>
+                    </div>
+                    <div class="credential-actions">
+                        <button class="achievements-toggle" onclick="toggleAchievements(this)">
+                            <i class="bi bi-chevron-down"></i>
+                            <span>Show Achievements</span>
+                        </button>
+                        <a href="#" class="btn btn-outline">
+                            <i class="bi bi-box-arrow-up-right"></i>
+                            <span>View Credential</span>
+                        </a>
+                    </div>
+                    <div class="achievements-list">
+                        <div class="achievement-item">Professional certification in data engineering practices.</div>
+                        <div class="achievement-item">Data pipeline design and ETL processes.</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Back to Top Button -->
+    <button class="back-to-top" id="backToTop" onclick="scrollToTop()">
+        <i class="bi bi-arrow-up"></i>
+    </button>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Command Palette Functions
+        function openCommandPalette() {
+            const palette = document.getElementById('commandPalette');
+            palette.classList.add('active');
+            document.getElementById('commandSearchInput').focus();
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeCommandPalette(event) {
+            if (event && event.target.id !== 'commandPalette') return;
+            const palette = document.getElementById('commandPalette');
+            palette.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        // Keyboard shortcuts
+        document.addEventListener('keydown', function (e) {
+            // Cmd/Ctrl + K to open command palette
+            if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
+                e.preventDefault();
+                openCommandPalette();
+            }
+            // Escape to close command palette
+            if (e.key === 'Escape') {
+                closeCommandPalette(e);
+            }
+        });
+
+        // Command palette search
+        document.getElementById('commandSearchInput').addEventListener('input', function (e) {
+            const query = e.target.value.toLowerCase();
+            const items = document.querySelectorAll('.command-item');
+            const sections = document.querySelectorAll('.command-section');
+
+            items.forEach(item => {
+                const text = item.querySelector('.command-item-text').textContent.toLowerCase();
+                if (text.includes(query)) {
+                    item.style.display = 'flex';
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+
+            // Hide sections if all items are hidden
+            sections.forEach(section => {
+                const visibleItems = section.querySelectorAll('.command-item[style="display: flex;"]');
+                if (visibleItems.length === 0 && query !== '') {
+                    section.style.display = 'none';
+                } else {
+                    section.style.display = 'block';
+                }
+            });
+        });
+
+        // Mobile menu toggle
+        function toggleMobileMenu() {
+            const sidebar = document.getElementById('sidebar');
+            const overlay = document.getElementById('mobileOverlay');
+            sidebar.classList.toggle('show');
+            overlay.classList.toggle('active');
+            if (sidebar.classList.contains('show')) {
+                document.body.style.overflow = 'hidden';
+            } else {
+                document.body.style.overflow = '';
+            }
+        }
+
+        // Close mobile menu when clicking nav item
+        function closeMobileMenu(event) {
+            if (window.innerWidth <= 991) {
+                const sidebar = document.getElementById('sidebar');
+                if (sidebar.classList.contains('show')) {
+                    toggleMobileMenu();
+                }
+            }
+        }
+
+        // Language toggle
+        let currentLanguage = 'en';
+        function toggleLanguage() {
+            currentLanguage = currentLanguage === 'en' ? 'id' : 'en';
+            document.getElementById('currentLang').textContent = currentLanguage.toUpperCase();
+            document.body.style.opacity = '0.8';
+            setTimeout(() => {
+                document.body.style.opacity = '1';
+            }, 150);
+        }
+
+        // Back to Top
+        const backToTopButton = document.getElementById('backToTop');
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 300) {
+                backToTopButton.classList.add('show');
+            } else {
+                backToTopButton.classList.remove('show');
+            }
+        });
+
+        function scrollToTop() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        }
+
+        // Tab Navigation
+        const tabs = document.querySelectorAll('.tab-item');
+        const sections = {
+            'intro': document.getElementById('intro-section'),
+            'experiences': document.getElementById('experiences-section'),
+            'educations': document.getElementById('educations-section'),
+            'certifications': document.getElementById('certifications-section')
+        };
+
+        tabs.forEach(tab => {
+            tab.addEventListener('click', (e) => {
+                e.preventDefault();
+                // Remove active class from all tabs
+                tabs.forEach(t => t.classList.remove('active'));
+                // Add active class to clicked tab
+                tab.classList.add('active');
+                // Hide all sections
+                Object.values(sections).forEach(section => {
+                    section.style.display = 'none';
+                });
+                // Show selected section
+                const tabName = tab.getAttribute('data-tab');
+                if (sections[tabName]) {
+                    sections[tabName].style.display = 'block';
+                }
+                // Scroll to top of content smoothly
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Toggle Achievements
+        function toggleAchievements(button) {
+            const credentialActions = button.parentElement;
+            const achievementsList = credentialActions.nextElementSibling;
+            const icon = button.querySelector('i');
+            const text = button.querySelector('span');
+            if (achievementsList && achievementsList.classList.contains('achievements-list')) {
+                if (achievementsList.classList.contains('show')) {
+                    achievementsList.classList.remove('show');
+                    icon.className = 'bi bi-chevron-down';
+                    text.textContent = 'Show Achievements';
+                } else {
+                    achievementsList.classList.add('show');
+                    icon.className = 'bi bi-chevron-up';
+                    text.textContent = 'Hide Achievements';
+                }
+            }
+        }
+
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                const href = this.getAttribute('href');
+                if (href !== '#' && !this.classList.contains('tab-item')) {
+                    e.preventDefault();
+                    const target = document.querySelector(href);
+                    if (target) {
+                        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    }
+                }
+            });
+        });
+
+        // Initialize
+        document.body.style.transition = 'opacity 0.2s ease';
+    </script>
+</body>
+
+</html>

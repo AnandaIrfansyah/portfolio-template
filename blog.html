@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ananda Irfansyah - Portfolio</title>
+    <title>Blog - Ananda Irfansyah</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -35,10 +35,6 @@
             z-index: 1001;
             padding: 0 1rem;
             transition: transform 0.3s ease;
-        }
-
-        .mobile-top-navbar.hide {
-            transform: translateY(-100%);
         }
 
         .mobile-navbar-content {
@@ -142,7 +138,6 @@
             border-radius: 3px;
         }
 
-        /* Close button inside sidebar (mobile only) */
         .sidebar-close-btn {
             display: none;
             position: absolute;
@@ -450,11 +445,6 @@
             background-color: #1a1a1a;
         }
 
-        .command-item.current .command-item-badge {
-            background-color: #374151;
-            color: #d1d5db;
-        }
-
         /* Sidebar Nav */
         .sidebar-nav {
             padding: 0.5rem 0;
@@ -554,155 +544,97 @@
 
         /* Hero Section */
         .hero-section {
-            padding: 3rem 0 1rem;
+            padding: 3rem 0 2rem;
         }
 
         .hero-title {
-            font-size: 3.5rem;
+            font-size: 3rem;
             font-weight: 700;
             margin-bottom: 0.5rem;
             color: #ffffff;
             line-height: 1.2;
         }
 
-        .hero-name {
+        .hero-title span {
             color: #2563eb;
-        }
-
-        .hero-wave {
-            display: inline-block;
-            animation: wave 2.5s ease-in-out infinite;
-        }
-
-        @keyframes wave {
-
-            0%,
-            100% {
-                transform: rotate(0deg);
-            }
-
-            10%,
-            30% {
-                transform: rotate(14deg);
-            }
-
-            20% {
-                transform: rotate(-8deg);
-            }
-
-            40% {
-                transform: rotate(0deg);
-            }
         }
 
         .hero-subtitle {
             color: #9ca3af;
             font-size: 1.125rem;
-            margin-bottom: 1.5rem;
+            margin-bottom: 2rem;
             font-weight: 400;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .hero-desc {
-            color: #d1d5db;
-            line-height: 1.7;
             max-width: 800px;
-            margin-bottom: 2rem;
         }
 
-        .hero-buttons {
+        /* Blog Search Bar */
+        .blog-search-section {
+            margin-bottom: 2.5rem;
+        }
+
+        .blog-search-wrapper {
             display: flex;
+            justify-content: flex-end;
+            align-items: center;
             gap: 1rem;
-            flex-wrap: wrap;
         }
 
-        .btn {
-            padding: 0.75rem 1.5rem;
-            font-weight: 500;
-            border-radius: 0.5rem;
-            transition: all 0.2s;
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            font-size: 0.875rem;
-            cursor: pointer;
-            text-decoration: none;
+        .blog-search-input-wrapper {
+            position: relative;
+            max-width: 400px;
+            flex: 1;
         }
 
-        .btn-primary {
-            background-color: #2563eb;
-            border: none;
-            color: #ffffff;
-        }
-
-        .btn-primary:hover {
-            background-color: #1d4ed8;
-            transform: translateY(-2px);
-            box-shadow: 0 10px 20px rgba(37, 99, 235, 0.3);
-        }
-
-        .btn-outline {
-            background-color: transparent;
-            border: 1px solid #374151;
+        .blog-search-input {
+            width: 100%;
+            background-color: #0f0f0f;
+            border: 1px solid #1a1a1a;
             color: #e5e7eb;
-        }
-
-        .btn-outline:hover {
-            background-color: #1f2937;
-            border-color: #4b5563;
-            color: #ffffff;
-        }
-
-        .btn-success {
-            background-color: #10b981;
-            border: none;
-            color: #ffffff;
-        }
-
-        .btn-success:hover {
-            background-color: #059669;
-            transform: translateY(-2px);
-            box-shadow: 0 10px 20px rgba(16, 185, 129, 0.3);
-        }
-
-        /* Section Styles */
-        .section-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 2rem;
-        }
-
-        .section-title {
-            font-size: 2rem;
-            font-weight: 700;
-            color: #ffffff;
-            margin: 0;
-        }
-
-        .section-title span {
-            color: #2563eb;
-        }
-
-        .view-all-link {
-            color: #2563eb;
-            text-decoration: none;
-            font-weight: 500;
-            font-size: 0.875rem;
-            display: flex;
-            align-items: center;
-            gap: 0.25rem;
+            padding: 0.875rem 1rem 0.875rem 3rem;
+            border-radius: 0.75rem;
+            font-size: 0.95rem;
             transition: all 0.2s;
         }
 
-        .view-all-link:hover {
-            color: #1d4ed8;
-            gap: 0.5rem;
+        .blog-search-input:focus {
+            outline: none;
+            border-color: #374151;
+            background-color: #111111;
         }
 
-        /* Card Styles */
+        .blog-search-input::placeholder {
+            color: #6b7280;
+        }
+
+        .blog-search-icon {
+            position: absolute;
+            left: 1rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #6b7280;
+            font-size: 1.125rem;
+        }
+
+        .blog-search-btn {
+            background-color: #1a1a1a;
+            border: 1px solid #262626;
+            color: #e5e7eb;
+            padding: 0.875rem 1.5rem;
+            border-radius: 0.75rem;
+            font-size: 0.95rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s;
+            white-space: nowrap;
+        }
+
+        .blog-search-btn:hover {
+            background-color: #262626;
+            border-color: #374151;
+            color: #ffffff;
+        }
+
+        /* Blog Card */
         .blog-card {
             background-color: #0f0f0f;
             border: 1px solid #1a1a1a;
@@ -715,26 +647,18 @@
             text-decoration: none;
             color: inherit;
             position: relative;
+            height: 100%;
         }
 
         @media (min-width: 992px) {
-            .blog-card {
-                height: 100%;
-            }
-
             .blog-card:hover {
-                transform: translateY(-8px) scale(1.02);
+                transform: translateY(-8px);
                 border-color: #2563eb;
                 box-shadow: 0 20px 40px rgba(37, 99, 235, 0.2);
-                z-index: 10;
             }
         }
 
         @media (max-width: 991px) {
-            .blog-card {
-                height: auto;
-            }
-
             .blog-card:active {
                 transform: scale(0.98);
                 border-color: #2563eb;
@@ -812,182 +736,57 @@
             font-size: 0.875rem;
         }
 
-        /* Tools Section */
-        .tools-section {
-            margin-bottom: 4rem;
-        }
-
-        .tools-wrapper {
-            overflow: hidden;
-            position: relative;
-            padding: 1rem 0;
-        }
-
-        .tools-row {
+        /* Pagination */
+        .pagination-section {
+            margin-top: 3rem;
             display: flex;
-            gap: 1rem;
-            animation: scroll-left 20s linear infinite;
-            margin-bottom: 1rem;
+            justify-content: center;
         }
 
-        .tools-row:nth-child(2) {
-            animation: scroll-right 20s linear infinite;
+        .pagination {
+            display: flex;
+            gap: 0.5rem;
+            align-items: center;
         }
 
-        .tools-row:hover {
-            animation-play-state: paused;
-        }
-
-        @keyframes scroll-left {
-            0% {
-                transform: translateX(0);
-            }
-
-            100% {
-                transform: translateX(-50%);
-            }
-        }
-
-        @keyframes scroll-right {
-            0% {
-                transform: translateX(-50%);
-            }
-
-            100% {
-                transform: translateX(0);
-            }
-        }
-
-        .tool-badge {
+        .page-item {
             background-color: #0f0f0f;
             border: 1px solid #1a1a1a;
-            color: #e5e7eb;
-            padding: 0.875rem 1.5rem;
-            border-radius: 0.75rem;
-            font-size: 0.9rem;
+            color: #9ca3af;
+            width: 40px;
+            height: 40px;
+            border-radius: 0.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.2s;
+            font-size: 0.875rem;
             font-weight: 500;
-            display: inline-flex;
-            align-items: center;
-            gap: 0.625rem;
-            transition: all 0.3s ease;
-            white-space: nowrap;
-            cursor: pointer;
+            text-decoration: none;
         }
 
-        .tool-badge i {
-            font-size: 1.25rem;
-        }
-
-        .tool-badge:hover {
+        .page-item:hover {
             background-color: #1a1a1a;
-            border-color: #2563eb;
-            transform: translateY(-4px);
-            box-shadow: 0 12px 24px rgba(37, 99, 235, 0.25);
-        }
-
-        /* Support Card */
-        .support-section {
-            margin-bottom: 4rem;
-        }
-
-        .support-card {
-            background: linear-gradient(135deg, #7c3aed 0%, #ec4899 50%, #db2777 100%);
-            border: none;
-            border-radius: 1.5rem;
-            padding: 4rem 3rem;
-            text-align: center;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .support-card::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, transparent 70%);
-            animation: glow 8s ease-in-out infinite;
-        }
-
-        @keyframes glow {
-
-            0%,
-            100% {
-                transform: translate(0, 0) scale(1);
-            }
-
-            50% {
-                transform: translate(10%, 10%) scale(1.1);
-            }
-        }
-
-        .support-content {
-            position: relative;
-            z-index: 1;
-        }
-
-        .support-title {
+            border-color: #374151;
             color: #ffffff;
-            font-size: 2.5rem;
-            font-weight: 700;
-            margin-bottom: 1.25rem;
-            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
         }
 
-        .support-desc {
-            color: rgba(255, 255, 255, 0.95);
-            font-size: 1.125rem;
-            margin-bottom: 2.5rem;
-            line-height: 1.6;
-            max-width: 600px;
-            margin-left: auto;
-            margin-right: auto;
+        .page-item.active {
+            background-color: #1a1a1a;
+            border-color: #374151;
+            color: #ffffff;
         }
 
-        .btn-support {
-            background-color: #ffffff;
-            color: #7c3aed;
-            padding: 1rem 2.5rem;
-            font-weight: 600;
-            font-size: 1rem;
-            border: none;
-            border-radius: 0.75rem;
-            transition: all 0.3s ease;
-            display: inline-flex;
-            align-items: center;
-            gap: 0.625rem;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-            cursor: pointer;
+        .page-item.disabled {
+            opacity: 0.4;
+            cursor: not-allowed;
+            pointer-events: none;
         }
 
-        .btn-support:hover {
-            transform: translateY(-4px) scale(1.05);
-            box-shadow: 0 20px 40px rgba(255, 255, 255, 0.4);
-            color: #6d28d9;
-        }
-
-        .btn-support i {
-            font-size: 1.125rem;
-            animation: heartbeat 1.5s ease-in-out infinite;
-        }
-
-        @keyframes heartbeat {
-
-            0%,
-            100% {
-                transform: scale(1);
-            }
-
-            10%,
-            30% {
-                transform: scale(1.1);
-            }
-
-            20% {
-                transform: scale(0.95);
-            }
+        .page-dots {
+            color: #6b7280;
+            padding: 0 0.5rem;
         }
 
         /* Back to Top Button */
@@ -1068,104 +867,6 @@
             pointer-events: auto;
         }
 
-        /* Mobile Carousel */
-        .blog-mobile {
-            position: relative;
-        }
-
-        .carousel {
-            transition: none !important;
-        }
-
-        .carousel-item {
-            padding-bottom: 2rem;
-            transition: transform 0.3s ease-in-out !important;
-        }
-
-        .carousel-control-prev,
-        .carousel-control-next {
-            width: 45px;
-            height: 45px;
-            background: linear-gradient(135deg, rgba(15, 15, 15, 0.95) 0%, rgba(26, 26, 26, 0.95) 100%);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(107, 114, 128, 0.3);
-            border-radius: 50%;
-            top: 35%;
-            transform: translateY(-50%);
-            opacity: 1;
-            transition: all 0.3s ease;
-            z-index: 100;
-            position: absolute;
-        }
-
-        .carousel-control-prev:hover,
-        .carousel-control-next:hover {
-            background: linear-gradient(135deg, rgba(37, 99, 235, 0.2) 0%, rgba(37, 99, 235, 0.3) 100%);
-            border-color: rgba(37, 99, 235, 0.5);
-            transform: translateY(-50%) scale(1.1);
-        }
-
-        .carousel-control-prev {
-            left: -20px;
-        }
-
-        .carousel-control-next {
-            right: -20px;
-        }
-
-        .carousel-control-prev-icon,
-        .carousel-control-next-icon {
-            filter: brightness(1.5);
-            width: 20px;
-            height: 20px;
-        }
-
-        .carousel-indicators {
-            position: relative;
-            margin-top: 1.5rem;
-            margin-bottom: 0;
-        }
-
-        .carousel-indicators [data-bs-target] {
-            width: 10px;
-            height: 10px;
-            border-radius: 50%;
-            background-color: #374151;
-        }
-
-        .carousel-indicators .active {
-            background-color: #2563eb;
-        }
-
-        .blog-mobile .blog-card {
-            min-height: auto;
-            height: auto;
-            max-height: none;
-        }
-
-        .blog-mobile .carousel-inner {
-            padding-bottom: 0;
-            overflow: visible;
-        }
-
-        .blog-mobile .carousel {
-            overflow: visible;
-        }
-
-        .carousel-item .blog-card {
-            display: flex;
-            flex-direction: column;
-        }
-
-        .carousel-item .blog-excerpt {
-            flex-grow: 0;
-            overflow: hidden;
-            text-overflow: ellipsis;
-            display: -webkit-box;
-            -webkit-line-clamp: 3;
-            -webkit-box-orient: vertical;
-        }
-
         /* Responsive */
         @media (max-width: 991px) {
             .mobile-top-navbar {
@@ -1202,18 +903,24 @@
                 display: none;
             }
 
-            .blog-mobile {
-                display: block;
+            .blog-search-wrapper {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .blog-search-input-wrapper {
+                max-width: 100%;
+            }
+
+            .blog-search-btn {
+                width: 100%;
+                padding: 1rem 1.5rem;
             }
         }
 
         @media (min-width: 992px) {
             .sidebar {
                 transform: translateX(0) !important;
-            }
-
-            .blog-mobile {
-                display: none;
             }
         }
 
@@ -1223,46 +930,7 @@
             }
 
             .hero-subtitle {
-                flex-direction: column;
-                align-items: flex-start;
-            }
-
-            .hero-buttons {
-                flex-direction: column;
-                width: 100%;
-            }
-
-            .btn {
-                width: 100%;
-                justify-content: center;
-            }
-
-            .support-title {
-                font-size: 1.75rem;
-            }
-
-            .support-desc {
                 font-size: 1rem;
-            }
-
-            .carousel-control-prev {
-                left: 5px;
-            }
-
-            .carousel-control-next {
-                right: 5px;
-            }
-
-            .carousel-control-prev,
-            .carousel-control-next {
-                width: 40px;
-                height: 40px;
-            }
-
-            .carousel-control-prev-icon,
-            .carousel-control-next-icon {
-                width: 18px;
-                height: 18px;
             }
 
             .back-to-top {
@@ -1275,6 +943,16 @@
             .back-to-top i {
                 font-size: 1.125rem;
             }
+
+            .pagination {
+                gap: 0.375rem;
+            }
+
+            .page-item {
+                width: 36px;
+                height: 36px;
+                font-size: 0.8rem;
+            }
         }
     </style>
 </head>
@@ -1284,8 +962,7 @@
     <nav class="mobile-top-navbar">
         <div class="mobile-navbar-content">
             <div class="mobile-profile">
-                <img src="img/hero.png"
-                    alt="Profile" class="mobile-profile-img">
+                <img src="img/hero.png" alt="Profile" class="mobile-profile-img">
                 <div class="mobile-profile-info">
                     <div class="mobile-profile-name">
                         Ananda Irfansyah
@@ -1327,14 +1004,13 @@
             <div class="command-results" id="commandResults">
                 <div class="command-section">
                     <div class="command-section-title">PAGES</div>
-                    <a href="home.html" class="command-item current">
+                    <a href="home.html" class="command-item">
                         <div class="command-item-left">
                             <i class="bi bi-house-door-fill command-item-icon"></i>
                             <span class="command-item-text">Home</span>
                         </div>
-                        <span class="command-item-badge">You are here</span>
+                        <span class="command-item-badge">Pages</span>
                     </a>
-                    
                     <a href="projects.html" class="command-item">
                         <div class="command-item-left">
                             <i class="bi bi-kanban command-item-icon"></i>
@@ -1342,12 +1018,12 @@
                         </div>
                         <span class="command-item-badge">Pages</span>
                     </a>
-                    <a href="blog.html" class="command-item">
+                    <a href="blog.html" class="command-item current">
                         <div class="command-item-left">
                             <i class="bi bi-rss command-item-icon"></i>
                             <span class="command-item-text">Blog</span>
                         </div>
-                        <span class="command-item-badge">Pages</span>
+                        <span class="command-item-badge">You are here</span>
                     </a>
                     <a href="about.html" class="command-item">
                         <div class="command-item-left">
@@ -1452,8 +1128,7 @@
         </button>
 
         <div class="sidebar-header">
-            <img src="img/hero.png"
-                alt="Profile" class="profile-img">
+            <img src="img/hero.png" alt="Profile" class="profile-img">
             <div class="profile-name">
                 Ananda Irfansyah
                 <i class="bi bi-patch-check-fill verified-badge"></i>
@@ -1471,18 +1146,18 @@
             <span class="search-shortcut">⌘K</span>
         </div>
         <nav class="sidebar-nav">
-            <a href="home.html" class="nav-item active" onclick="closeMobileMenu(event)">
+            <a href="home.html" class="nav-item" onclick="closeMobileMenu(event)">
                 <i class="bi bi-house-door-fill"></i>
                 <span data-lang="nav-home">Home</span>
-                <i class="bi bi-arrow-right nav-arrow"></i>
             </a>
             <a href="projects.html" class="nav-item" onclick="closeMobileMenu(event)">
                 <i class="bi bi-kanban"></i>
                 <span data-lang="nav-projects">Projects</span>
             </a>
-            <a href="blog.html" class="nav-item" onclick="closeMobileMenu(event)">
+            <a href="blog.html" class="nav-item active" onclick="closeMobileMenu(event)">
                 <i class="bi bi-rss"></i>
                 <span data-lang="nav-blog">Blog</span>
+                <i class="bi bi-arrow-right nav-arrow"></i>
             </a>
             <a href="about.html" class="nav-item" onclick="closeMobileMenu(event)">
                 <i class="bi bi-person"></i>
@@ -1515,61 +1190,38 @@
                 <div class="row">
                     <div class="col-12">
                         <h1 class="hero-title">
-                            <span data-lang="hero-greeting">Hi, I'm</span>
-                            <span class="hero-name">Ananda Irfansyah</span>
-                            <span class="hero-wave">👋</span>
+                            Latest <span data-lang="blogs-title">Blogs</span>
                         </h1>
-                        <div class="hero-subtitle">
-                            <span data-lang="hero-role">Python Developer</span>
-                            <span>•</span>
-                            <span>Surakarta Residency, Indonesia 🇮🇩</span>
-                        </div>
-                        <p class="hero-desc" data-lang="hero-desc">
-                            I explore through code, share with empathy, and reflect on every challenge. My work weaves
-                            machine learning, web creation, and open source. I thrive on collaborating with teams to
-                            develop AI and web solutions that blend function with clarity.
+                        <p class="hero-subtitle" data-lang="blogs-subtitle">
+                            Not all traces are written in code. Some live here in thoughts, questions, and quiet
+                            observations.
                         </p>
-                        <div class="hero-buttons">
-                            <a href="#" class="btn btn-primary">
-                                <i class="bi bi-person"></i>
-                                <span data-lang="btn-about">About</span>
-                            </a>
-                            <a href="#" class="btn btn-outline">
-                                <i class="bi bi-envelope"></i>
-                                <span data-lang="btn-contact">Contact</span>
-                            </a>
-                            <a href="#" class="btn btn-success">
-                                <i class="bi bi-briefcase"></i>
-                                <span data-lang="btn-hireable">Hireable</span>
-                            </a>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Blog Search Section -->
+            <section class="blog-search-section">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="blog-search-wrapper">
+                            <div class="blog-search-input-wrapper">
+                                <i class="bi bi-search blog-search-icon"></i>
+                                <input type="text" class="blog-search-input" placeholder="Search blogs..."
+                                    id="blogSearchInput" data-lang-placeholder="search-blogs">
+                            </div>
+                            <button class="blog-search-btn" data-lang="search-btn">Search</button>
                         </div>
                     </div>
                 </div>
             </section>
 
-            <div class="divider"></div>
-
-            <!-- Publications Section -->
-            <section class="publications-section">
-                <div class="row">
-                    <div class="col-12">
-                        <div class="section-header">
-                            <h2 class="section-title">
-                                <span data-lang="section-latest">Latest</span>
-                                <span data-lang="section-blogs">Blogs</span>
-                            </h2>
-                            <a href="#" class="view-all-link">
-                                <span data-lang="view-all">View All</span>
-                                <i class="bi bi-arrow-right"></i>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Desktop Grid View -->
-                <div class="row g-4 d-none d-lg-flex">
+            <!-- Blogs Grid -->
+            <section class="blogs-grid-section">
+                <div class="row g-4">
+                    <!-- Blog 1 -->
                     <div class="col-lg-4 col-md-6 col-12">
-                        <a href="#" class="blog-card" onclick="handleCardClick(event, 'blog1')">
+                        <a href="#" class="blog-card">
                             <div class="blog-tags">
                                 <span class="tag">#threshold-system</span>
                                 <span class="tag">#manual-control</span>
@@ -1577,24 +1229,24 @@
                             </div>
                             <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&h=400&fit=crop"
                                 alt="Usage Monitoring" class="blog-image">
-                            <h3 class="blog-title" data-lang="blog1-title">How Usage Monitoring Sustains MLBB-Stats and
-                                API-PDDIKTI</h3>
-                            <p class="blog-excerpt" data-lang="blog1-excerpt">
+                            <h3 class="blog-title">How Usage Monitoring Sustains MLBB-Stats and API-PDDIKTI</h3>
+                            <p class="blog-excerpt">
                                 Two open APIs remain online through a robust threshold system and manual code-based
-                                controls, ensuring sustainable...
+                                controls, ensuring sustainable performance and reliability.
                             </p>
                             <div class="blog-meta">
                                 <div class="blog-author">
-                                    <img src="img/hero.png"
-                                        alt="Author" class="author-avatar">
+                                    <img src="img/hero.png" alt="Author" class="author-avatar">
                                     <span class="author-name">Ananda Irfansyah</span>
                                 </div>
                                 <span class="blog-date">July 9, 2025</span>
                             </div>
                         </a>
                     </div>
+
+                    <!-- Blog 2 -->
                     <div class="col-lg-4 col-md-6 col-12">
-                        <a href="#" class="blog-card" onclick="handleCardClick(event, 'blog2')">
+                        <a href="#" class="blog-card">
                             <div class="blog-tags">
                                 <span class="tag">#project-management</span>
                                 <span class="tag">#productivity</span>
@@ -1602,24 +1254,24 @@
                             </div>
                             <img src="https://images.unsplash.com/photo-1484480974693-6ca0a78fb36b?w=800&h=400&fit=crop"
                                 alt="Project Priority" class="blog-image">
-                            <h3 class="blog-title" data-lang="blog2-title">Project Priority: What It Is and How to
-                                Master It</h3>
-                            <p class="blog-excerpt" data-lang="blog2-excerpt">
+                            <h3 class="blog-title">Project Priority: What It Is and How to Master It</h3>
+                            <p class="blog-excerpt">
                                 Learn how to prioritize projects effectively based on urgency, complexity, and impact to
                                 stay focused and meet deadlines.
                             </p>
                             <div class="blog-meta">
                                 <div class="blog-author">
-                                    <img src="img/hero.png"
-                                        alt="Author" class="author-avatar">
+                                    <img src="img/hero.png" alt="Author" class="author-avatar">
                                     <span class="author-name">Ananda Irfansyah</span>
                                 </div>
                                 <span class="blog-date">July 7, 2025</span>
                             </div>
                         </a>
                     </div>
+
+                    <!-- Blog 3 -->
                     <div class="col-lg-4 col-md-6 col-12">
-                        <a href="#" class="blog-card" onclick="handleCardClick(event, 'blog3')">
+                        <a href="#" class="blog-card">
                             <div class="blog-tags">
                                 <span class="tag">#api-update</span>
                                 <span class="tag">#community</span>
@@ -1627,198 +1279,118 @@
                             </div>
                             <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&h=400&fit=crop"
                                 alt="API Status" class="blog-image">
-                            <h3 class="blog-title" data-lang="blog3-title">Remain Online with Low Usage Threshold</h3>
-                            <p class="blog-excerpt" data-lang="blog3-excerpt">
+                            <h3 class="blog-title">Remain Online with Low Usage Threshold</h3>
+                            <p class="blog-excerpt">
                                 The planned shutdown APIs remain accessible, under a memory usage threshold, ensuring
                                 continued service for the community.
                             </p>
                             <div class="blog-meta">
                                 <div class="blog-author">
-                                    <img src="img/hero.png"
-                                        alt="Author" class="author-avatar">
+                                    <img src="img/hero.png" alt="Author" class="author-avatar">
                                     <span class="author-name">Ananda Irfansyah</span>
                                 </div>
                                 <span class="blog-date">June 15, 2025</span>
                             </div>
                         </a>
                     </div>
-                </div>
 
-                <!-- Mobile Carousel View -->
-                <div class="blog-mobile d-lg-none">
-                    <div id="blogCarousel" class="carousel slide" data-bs-ride="false" data-bs-interval="false">
-                        <div class="carousel-inner">
-                            <div class="carousel-item active">
-                                <a href="#" class="blog-card" onclick="handleCardClick(event, 'blog1')">
-                                    <div class="blog-tags">
-                                        <span class="tag">#threshold-system</span>
-                                        <span class="tag">#manual-control</span>
-                                    </div>
-                                    <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&h=400&fit=crop"
-                                        alt="Usage Monitoring" class="blog-image">
-                                    <h3 class="blog-title" data-lang="blog1-title">How Usage Monitoring Sustains
-                                        MLBB-Stats and API-PDDIKTI</h3>
-                                    <p class="blog-excerpt" data-lang="blog1-excerpt">
-                                        Two open APIs remain online through a robust threshold system and manual
-                                        code-based controls, ensuring sustainable...
-                                    </p>
-                                    <div class="blog-meta">
-                                        <div class="blog-author">
-                                            <img src="img/hero.png"
-                                                alt="Author" class="author-avatar">
-                                            <span class="author-name">Ananda Irfansyah</span>
-                                        </div>
-                                        <span class="blog-date">July 9, 2025</span>
-                                    </div>
-                                </a>
+                    <!-- Blog 4 -->
+                    <div class="col-lg-4 col-md-6 col-12">
+                        <a href="#" class="blog-card">
+                            <div class="blog-tags">
+                                <span class="tag">#astronomy</span>
+                                <span class="tag">#exoplanets</span>
+                                <span class="tag">#space-exploration</span>
+                                <span class="tag">#1</span>
                             </div>
-                            <div class="carousel-item">
-                                <a href="#" class="blog-card" onclick="handleCardClick(event, 'blog2')">
-                                    <div class="blog-tags">
-                                        <span class="tag">#project-management</span>
-                                        <span class="tag">#productivity</span>
-                                    </div>
-                                    <img src="https://images.unsplash.com/photo-1484480974693-6ca0a78fb36b?w=800&h=400&fit=crop"
-                                        alt="Project Priority" class="blog-image">
-                                    <h3 class="blog-title" data-lang="blog2-title">Project Priority: What It Is and How
-                                        to Master It</h3>
-                                    <p class="blog-excerpt" data-lang="blog2-excerpt">
-                                        Learn how to prioritize projects effectively based on urgency, complexity, and
-                                        impact to stay focused and meet deadlines.
-                                    </p>
-                                    <div class="blog-meta">
-                                        <div class="blog-author">
-                                            <img src="img/hero.png"
-                                                alt="Author" class="author-avatar">
-                                            <span class="author-name">Ananda Irfansyah</span>
-                                        </div>
-                                        <span class="blog-date">July 7, 2025</span>
-                                    </div>
-                                </a>
+                            <img src="https://images.unsplash.com/photo-1462331940025-496dfbfc7564?w=800&h=400&fit=crop"
+                                alt="Exoplanet" class="blog-image">
+                            <h3 class="blog-title">What Is an Exoplanet? – A Tale from Beyond Our Sky</h3>
+                            <p class="blog-excerpt">
+                                Venture into distant star systems as we uncover what exoplanets are and how they fuel
+                                our cosmic curiosity.
+                            </p>
+                            <div class="blog-meta">
+                                <div class="blog-author">
+                                    <img src="img/hero.png" alt="Author" class="author-avatar">
+                                    <span class="author-name">Ananda Irfansyah</span>
+                                </div>
+                                <span class="blog-date">June 30, 2025</span>
                             </div>
-                            <div class="carousel-item">
-                                <a href="#" class="blog-card" onclick="handleCardClick(event, 'blog3')">
-                                    <div class="blog-tags">
-                                        <span class="tag">#api-update</span>
-                                        <span class="tag">#community</span>
-                                    </div>
-                                    <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&h=400&fit=crop"
-                                        alt="API Status" class="blog-image">
-                                    <h3 class="blog-title" data-lang="blog3-title">Remain Online with Low Usage
-                                        Threshold</h3>
-                                    <p class="blog-excerpt" data-lang="blog3-excerpt">
-                                        The planned shutdown APIs remain accessible, under a memory usage threshold,
-                                        ensuring continued service for the community.
-                                    </p>
-                                    <div class="blog-meta">
-                                        <div class="blog-author">
-                                            <img src="img/hero.png"
-                                                alt="Author" class="author-avatar">
-                                            <span class="author-name">Ananda Irfansyah</span>
-                                        </div>
-                                        <span class="blog-date">June 15, 2025</span>
-                                    </div>
-                                </a>
+                        </a>
+                    </div>
+
+                    <!-- Blog 5 -->
+                    <div class="col-lg-4 col-md-6 col-12">
+                        <a href="#" class="blog-card">
+                            <div class="blog-tags">
+                                <span class="tag">#coding-camp</span>
+                                <span class="tag">#DI-coding</span>
+                                <span class="tag">#dbs-foundation</span>
+                                <span class="tag">#3</span>
                             </div>
-                        </div>
-                        <button class="carousel-control-prev" type="button" data-bs-target="#blogCarousel"
-                            data-bs-slide="prev">
-                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                            <span class="visually-hidden">Previous</span>
-                        </button>
-                        <button class="carousel-control-next" type="button" data-bs-target="#blogCarousel"
-                            data-bs-slide="next">
-                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                            <span class="visually-hidden">Next</span>
-                        </button>
-                        <div class="carousel-indicators">
-                            <button type="button" data-bs-target="#blogCarousel" data-bs-slide-to="0"
-                                class="active"></button>
-                            <button type="button" data-bs-target="#blogCarousel" data-bs-slide-to="1"></button>
-                            <button type="button" data-bs-target="#blogCarousel" data-bs-slide-to="2"></button>
-                        </div>
+                            <img src="https://images.unsplash.com/photo-1531482615713-2afd69097998?w=800&h=400&fit=crop"
+                                alt="Coding Camp" class="blog-image">
+                            <h3 class="blog-title">Coding Camp – Building Future-Ready Talent with DBS Foundation</h3>
+                            <p class="blog-excerpt">
+                                Explore how this nationwide initiative equips students across Indonesia with high-demand
+                                tech skills, professional
+                                readiness, and meaningful support.
+                            </p>
+                            <div class="blog-meta">
+                                <div class="blog-author">
+                                    <img src="img/hero.png" alt="Author" class="author-avatar">
+                                    <span class="author-name">Ananda Irfansyah</span>
+                                </div>
+                                <span class="blog-date">June 23, 2025</span>
+                            </div>
+                        </a>
+                    </div>
+
+                    <!-- Blog 6 -->
+                    <div class="col-lg-4 col-md-6 col-12">
+                        <a href="#" class="blog-card">
+                            <div class="blog-tags">
+                                <span class="tag">#asian-countries</span>
+                                <span class="tag">#governance</span>
+                                <span class="tag">#religious-tolerance</span>
+                                <span class="tag">#8</span>
+                            </div>
+                            <img src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=800&h=400&fit=crop"
+                                alt="Asian Countries" class="blog-image">
+                            <h3 class="blog-title">Top 6 Asian Countries with Better Governance and Religious Harmony
+                            </h3>
+                            <p class="blog-excerpt">
+                                Exploring Asian nations with strong governance, low corruption, and religious tolerance
+                                for Indonesians
+                                seeking alternatives.
+                            </p>
+                            <div class="blog-meta">
+                                <div class="blog-author">
+                                    <img src="img/hero.png" alt="Author" class="author-avatar">
+                                    <span class="author-name">Ananda Irfansyah</span>
+                                </div>
+                                <span class="blog-date">May 10, 2025</span>
+                            </div>
+                        </a>
                     </div>
                 </div>
             </section>
 
-            <div class="divider"></div>
-
-            <!-- Tools Section -->
-            <section class="tools-section">
-                <div class="row">
-                    <div class="col-12">
-                        <h2 class="section-title">
-                            <span data-lang="section-tools">Tools</span>
-                            <span data-lang="section-used">I've Used</span>
-                        </h2>
-                    </div>
-                </div>
-                <div class="tools-wrapper">
-                    <div class="tools-row">
-                        <span class="tool-badge"><i class="bi bi-telegram" style="color: #0088cc;"></i> Telegram</span>
-                        <span class="tool-badge"><i class="bi bi-filetype-js" style="color: #3178c6;"></i>
-                            TypeScript</span>
-                        <span class="tool-badge"><i class="bi bi-code-slash" style="color: #f7df1e;"></i>
-                            JavaScript</span>
-                        <span class="tool-badge"><i class="bi bi-diagram-3" style="color: #e535ab;"></i> GraphQL</span>
-                        <span class="tool-badge"><i class="bi bi-braces" style="color: #f89939;"></i>
-                            Scikit-learn</span>
-                        <span class="tool-badge"><i class="bi bi-cloud-arrow-up" style="color: #4584b6;"></i>
-                            boto3</span>
-                        <span class="tool-badge"><i class="bi bi-telegram" style="color: #0088cc;"></i> Telegram</span>
-                        <span class="tool-badge"><i class="bi bi-filetype-js" style="color: #3178c6;"></i>
-                            TypeScript</span>
-                        <span class="tool-badge"><i class="bi bi-code-slash" style="color: #f7df1e;"></i>
-                            JavaScript</span>
-                        <span class="tool-badge"><i class="bi bi-diagram-3" style="color: #e535ab;"></i> GraphQL</span>
-                        <span class="tool-badge"><i class="bi bi-braces" style="color: #f89939;"></i>
-                            Scikit-learn</span>
-                        <span class="tool-badge"><i class="bi bi-cloud-arrow-up" style="color: #4584b6;"></i>
-                            boto3</span>
-                    </div>
-                    <div class="tools-row">
-                        <span class="tool-badge"><i class="bi bi-bootstrap" style="color: #7952b3;"></i>
-                            Bootstrap</span>
-                        <span class="tool-badge"><i class="bi bi-database" style="color: #336791;"></i>
-                            PostgreSQL</span>
-                        <span class="tool-badge"><i class="bi bi-lightning-charge" style="color: #61dafb;"></i>
-                            React</span>
-                        <span class="tool-badge"><i class="bi bi-filetype-py" style="color: #3776ab;"></i> Python</span>
-                        <span class="tool-badge"><i class="bi bi-fire" style="color: #ff6f00;"></i> TensorFlow</span>
-                        <span class="tool-badge"><i class="bi bi-git" style="color: #f05032;"></i> Git</span>
-                        <span class="tool-badge"><i class="bi bi-bootstrap" style="color: #7952b3;"></i>
-                            Bootstrap</span>
-                        <span class="tool-badge"><i class="bi bi-database" style="color: #336791;"></i>
-                            PostgreSQL</span>
-                        <span class="tool-badge"><i class="bi bi-lightning-charge" style="color: #61dafb;"></i>
-                            React</span>
-                        <span class="tool-badge"><i class="bi bi-filetype-py" style="color: #3776ab;"></i> Python</span>
-                        <span class="tool-badge"><i class="bi bi-fire" style="color: #ff6f00;"></i> TensorFlow</span>
-                        <span class="tool-badge"><i class="bi bi-git" style="color: #f05032;"></i> Git</span>
-                    </div>
-                </div>
-            </section>
-
-            <div class="divider"></div>
-
-            <!-- Support Section -->
-            <section class="support-section">
-                <div class="row">
-                    <div class="col-12">
-                        <div class="support-card">
-                            <div class="support-content">
-                                <h3 class="support-title" data-lang="support-title">Support My Work</h3>
-                                <p class="support-desc" data-lang="support-desc">
-                                    Help me continue creating open source projects and sharing knowledge with the
-                                    community!
-                                </p>
-                                <button class="btn btn-support">
-                                    <i class="bi bi-heart-fill"></i>
-                                    <span data-lang="btn-support">Support</span>
-                                </button>
-                            </div>
-                        </div>
-                    </div>
+            <!-- Pagination -->
+            <section class="pagination-section">
+                <div class="pagination">
+                    <a href="#" class="page-item disabled">
+                        <i class="bi bi-chevron-left"></i>
+                    </a>
+                    <a href="#" class="page-item active">1</a>
+                    <a href="#" class="page-item">2</a>
+                    <a href="#" class="page-item">3</a>
+                    <span class="page-dots">...</span>
+                    <a href="#" class="page-item">4</a>
+                    <a href="#" class="page-item">
+                        <i class="bi bi-chevron-right"></i>
+                    </a>
                 </div>
             </section>
         </div>
@@ -1848,12 +1420,10 @@
 
         // Keyboard shortcuts
         document.addEventListener('keydown', function (e) {
-            // Cmd/Ctrl + K to open command palette
             if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
                 e.preventDefault();
                 openCommandPalette();
             }
-            // Escape to close command palette
             if (e.key === 'Escape') {
                 closeCommandPalette(e);
             }
@@ -1874,7 +1444,6 @@
                 }
             });
 
-            // Hide sections if all items are hidden
             sections.forEach(section => {
                 const visibleItems = section.querySelectorAll('.command-item[style="display: flex;"]');
                 if (visibleItems.length === 0 && query !== '') {
@@ -1884,12 +1453,6 @@
                 }
             });
         });
-
-        // Handle card click
-        function handleCardClick(event, blogId) {
-            event.preventDefault();
-            console.log('Blog clicked:', blogId);
-        }
 
         // Mobile menu toggle
         function toggleMobileMenu() {
@@ -1927,26 +1490,10 @@
                 'nav-about': 'About',
                 'nav-contact': 'Contact',
                 'nav-guestbook': 'Guestbook',
-                'hero-greeting': "Hi, I'm",
-                'hero-role': 'Python Developer',
-                'hero-desc': "I explore through code, share with empathy, and reflect on every challenge. My work weaves machine learning, web creation, and open source. I thrive on collaborating with teams to develop AI and web solutions that blend function with clarity.",
-                'btn-about': 'About',
-                'btn-contact': 'Contact',
-                'btn-hireable': 'Hireable',
-                'section-latest': 'Latest',
-                'section-blogs': 'Blogs',
-                'view-all': 'View All',
-                'blog1-title': 'How Usage Monitoring Sustains MLBB-Stats and API-PDDIKTI',
-                'blog1-excerpt': 'Two open APIs remain online through a robust threshold system and manual code-based controls, ensuring sustainable...',
-                'blog2-title': 'Project Priority: What It Is and How to Master It',
-                'blog2-excerpt': 'Learn how to prioritize projects effectively based on urgency, complexity, and impact to stay focused and meet deadlines.',
-                'blog3-title': 'Remain Online with Low Usage Threshold',
-                'blog3-excerpt': 'The planned shutdown APIs remain accessible, under a memory usage threshold, ensuring continued service for the community.',
-                'section-tools': 'Tools',
-                'section-used': "I've Used",
-                'support-title': 'Support My Work',
-                'support-desc': 'Help me continue creating open source projects and sharing knowledge with the community!',
-                'btn-support': 'Support'
+                'blogs-title': 'Blogs',
+                'blogs-subtitle': 'Not all traces are written in code. Some live here in thoughts, questions, and quiet observations.',
+                'search-blogs': 'Search blogs...',
+                'search-btn': 'Search'
             },
             id: {
                 'status': 'Terbuka untuk Kerja',
@@ -1957,26 +1504,10 @@
                 'nav-about': 'Tentang',
                 'nav-contact': 'Kontak',
                 'nav-guestbook': 'Buku Tamu',
-                'hero-greeting': 'Hai, Saya',
-                'hero-role': 'Developer Python',
-                'hero-desc': 'Saya mengeksplorasi melalui kode, berbagi dengan empati, dan merefleksikan setiap tantangan. Pekerjaan saya menggabungkan pembelajaran mesin, pembuatan web, dan sumber terbuka. Saya senang berkolaborasi dengan tim untuk mengembangkan solusi AI dan web yang memadukan fungsi dengan kejelasan.',
-                'btn-about': 'Tentang',
-                'btn-contact': 'Kontak',
-                'btn-hireable': 'Bisa Dipekerjakan',
-                'section-latest': 'Terbaru',
-                'section-blogs': 'Blog',
-                'view-all': 'Lihat Semua',
-                'blog1-title': 'Cara Pemantauan Penggunaan Mempertahankan MLBB-Stats dan API-PDDIKTI',
-                'blog1-excerpt': 'Dua API terbuka tetap online melalui sistem ambang batas yang kuat dan kontrol berbasis kode manual, memastikan keberlanjutan...',
-                'blog2-title': 'Prioritas Proyek: Apa Itu dan Cara Menguasainya',
-                'blog2-excerpt': 'Pelajari cara memprioritaskan proyek secara efektif berdasarkan urgensi, kompleksitas, dan dampak untuk tetap fokus dan memenuhi tenggat waktu.',
-                'blog3-title': 'Tetap Online dengan Ambang Batas Penggunaan Rendah',
-                'blog3-excerpt': 'API yang direncanakan untuk ditutup tetap dapat diakses, di bawah ambang batas penggunaan memori, memastikan layanan berkelanjutan untuk komunitas.',
-                'section-tools': 'Alat',
-                'section-used': 'Yang Saya Gunakan',
-                'support-title': 'Dukung Karya Saya',
-                'support-desc': 'Bantu saya terus membuat proyek sumber terbuka dan berbagi pengetahuan dengan komunitas!',
-                'btn-support': 'Dukung'
+                'blogs-title': 'Blog',
+                'blogs-subtitle': 'Tidak semua jejak ditulis dalam kode. Beberapa hidup di sini dalam pemikiran, pertanyaan, dan pengamatan tenang.',
+                'search-blogs': 'Cari blog...',
+                'search-btn': 'Cari'
             }
         };
 
@@ -2003,11 +1534,39 @@
                     }
                 }
             });
+
+            // Update placeholder separately
+            const searchInput = document.getElementById('blogSearchInput');
+            if (searchInput) {
+                const placeholderKey = searchInput.getAttribute('data-lang-placeholder');
+                if (placeholderKey && translations[currentLanguage][placeholderKey]) {
+                    searchInput.placeholder = translations[currentLanguage][placeholderKey];
+                }
+            }
+
             const langElement = document.getElementById('currentLang');
             if (langElement) {
                 langElement.textContent = currentLanguage.toUpperCase();
             }
         }
+
+        // Blog search functionality
+        document.getElementById('blogSearchInput').addEventListener('input', function (e) {
+            const query = e.target.value.toLowerCase();
+            const blogCards = document.querySelectorAll('.blog-card');
+
+            blogCards.forEach(card => {
+                const title = card.querySelector('.blog-title').textContent.toLowerCase();
+                const excerpt = card.querySelector('.blog-excerpt').textContent.toLowerCase();
+                const tags = Array.from(card.querySelectorAll('.tag')).map(tag => tag.textContent.toLowerCase()).join(' ');
+
+                if (title.includes(query) || excerpt.includes(query) || tags.includes(query)) {
+                    card.parentElement.style.display = 'block';
+                } else {
+                    card.parentElement.style.display = 'none';
+                }
+            });
+        });
 
         // Back to Top functionality
         const backToTopButton = document.getElementById('backToTop');
@@ -2025,20 +1584,6 @@
                 behavior: 'smooth'
             });
         }
-
-        // Add smooth scrolling
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                const href = this.getAttribute('href');
-                if (href !== '#') {
-                    e.preventDefault();
-                    const target = document.querySelector(href);
-                    if (target) {
-                        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                    }
-                }
-            });
-        });
 
         // Add body transition
         document.body.style.transition = 'opacity 0.2s ease';
