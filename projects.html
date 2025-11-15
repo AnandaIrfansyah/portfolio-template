@@ -8,958 +8,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Inter', sans-serif;
-        }
-
-        body {
-            background-color: #000000;
-            color: #e0e0e0;
-            overflow-x: hidden;
-        }
-
-        /* Mobile Top Navbar */
-        .mobile-top-navbar {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 70px;
-            background-color: #0a0a0a;
-            border-bottom: 1px solid #1a1a1a;
-            z-index: 1001;
-            padding: 0 1rem;
-            transition: transform 0.3s ease;
-        }
-
-        .mobile-navbar-content {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            height: 100%;
-        }
-
-        .mobile-profile {
-            display: flex;
-            align-items: center;
-            gap: 0.75rem;
-        }
-
-        .mobile-profile-img {
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            border: 2px solid #2563eb;
-        }
-
-        .mobile-profile-info {
-            display: flex;
-            flex-direction: column;
-        }
-
-        .mobile-profile-name {
-            color: #ffffff;
-            font-weight: 600;
-            font-size: 0.95rem;
-            display: flex;
-            align-items: center;
-            gap: 0.35rem;
-        }
-
-        .mobile-profile-name i {
-            color: #2563eb;
-            font-size: 0.85rem;
-        }
-
-        .mobile-profile-username {
-            color: #6b7280;
-            font-size: 0.75rem;
-        }
-
-        .mobile-navbar-actions {
-            display: flex;
-            gap: 0.5rem;
-        }
-
-        .mobile-nav-btn {
-            background-color: #0f0f0f;
-            border: 1px solid #1a1a1a;
-            color: #e5e7eb;
-            width: 40px;
-            height: 40px;
-            border-radius: 0.5rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            transition: all 0.2s;
-        }
-
-        .mobile-nav-btn:hover {
-            background-color: #1a1a1a;
-            border-color: #2563eb;
-        }
-
-        .mobile-nav-btn i {
-            font-size: 1.25rem;
-        }
-
-        /* Sidebar Styles */
-        .sidebar {
-            position: fixed;
-            top: 0;
-            left: 0;
-            height: 100vh;
-            width: 280px;
-            background-color: #0a0a0a;
-            border-right: 1px solid #1a1a1a;
-            overflow-y: auto;
-            z-index: 1002;
-            display: flex;
-            flex-direction: column;
-            transition: transform 0.3s ease;
-        }
-
-        .sidebar::-webkit-scrollbar {
-            width: 6px;
-        }
-
-        .sidebar::-webkit-scrollbar-track {
-            background: #0a0a0a;
-        }
-
-        .sidebar::-webkit-scrollbar-thumb {
-            background: #1a1a1a;
-            border-radius: 3px;
-        }
-
-        .sidebar-close-btn {
-            display: none;
-            position: absolute;
-            top: 1rem;
-            right: 1rem;
-            background-color: #0f0f0f;
-            border: 1px solid #1a1a1a;
-            color: #e5e7eb;
-            width: 40px;
-            height: 40px;
-            border-radius: 0.5rem;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            transition: all 0.2s;
-            z-index: 10;
-        }
-
-        .sidebar-close-btn:hover {
-            background-color: #1a1a1a;
-            border-color: #2563eb;
-        }
-
-        .sidebar-close-btn i {
-            font-size: 1.25rem;
-        }
-
-        .sidebar-header {
-            padding: 2rem 1.5rem 1.5rem;
-            text-align: center;
-        }
-
-        .profile-img {
-            width: 80px;
-            height: 80px;
-            border-radius: 50%;
-            object-fit: cover;
-            border: 3px solid #2563eb;
-            margin-bottom: 1rem;
-        }
-
-        .profile-name {
-            font-size: 1.25rem;
-            font-weight: 600;
-            color: #ffffff;
-            margin-bottom: 0.25rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 0.5rem;
-        }
-
-        .verified-badge {
-            color: #2563eb;
-            font-size: 1.1rem;
-        }
-
-        .profile-username {
-            color: #6b7280;
-            font-size: 0.875rem;
-            margin-bottom: 1rem;
-        }
-
-        .status-badge {
-            background-color: #10b981;
-            color: #ffffff;
-            padding: 0.5rem 1rem;
-            border-radius: 0.5rem;
-            font-size: 0.75rem;
-            font-weight: 500;
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .status-dot {
-            width: 6px;
-            height: 6px;
-            background-color: #ffffff;
-            border-radius: 50%;
-            animation: pulse 2s ease-in-out infinite;
-        }
-
-        @keyframes pulse {
-
-            0%,
-            100% {
-                opacity: 1;
-            }
-
-            50% {
-                opacity: 0.5;
-            }
-        }
-
-        /* Command Palette Search */
-        .search-box {
-            margin: 0 1rem 1rem;
-            position: relative;
-        }
-
-        .search-input {
-            width: 100%;
-            background-color: #0f0f0f;
-            border: 1px solid #1a1a1a;
-            color: #9ca3af;
-            padding: 0.625rem 1rem 0.625rem 2.5rem;
-            border-radius: 0.5rem;
-            font-size: 0.875rem;
-            transition: all 0.2s;
-            cursor: pointer;
-        }
-
-        .search-input:focus {
-            outline: none;
-            border-color: #2563eb;
-            background-color: #111111;
-        }
-
-        .search-icon {
-            position: absolute;
-            left: 0.875rem;
-            top: 50%;
-            transform: translateY(-50%);
-            color: #6b7280;
-            font-size: 0.875rem;
-            pointer-events: none;
-        }
-
-        .search-shortcut {
-            position: absolute;
-            right: 0.875rem;
-            top: 50%;
-            transform: translateY(-50%);
-            background-color: #1a1a1a;
-            color: #6b7280;
-            padding: 0.125rem 0.375rem;
-            border-radius: 0.25rem;
-            font-size: 0.75rem;
-            font-weight: 500;
-            pointer-events: none;
-        }
-
-        /* Command Palette Modal */
-        .command-palette {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background-color: rgba(0, 0, 0, 0.8);
-            backdrop-filter: blur(8px);
-            z-index: 2000;
-            padding: 2rem;
-            animation: fadeIn 0.2s ease;
-        }
-
-        .command-palette.active {
-            display: flex;
-            align-items: flex-start;
-            justify-content: center;
-            padding-top: 5rem;
-        }
-
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-            }
-
-            to {
-                opacity: 1;
-            }
-        }
-
-        .command-palette-content {
-            background-color: #0a0a0a;
-            border: 1px solid #1a1a1a;
-            border-radius: 1rem;
-            width: 100%;
-            max-width: 640px;
-            max-height: 70vh;
-            display: flex;
-            flex-direction: column;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
-            animation: slideDown 0.3s ease;
-        }
-
-        @keyframes slideDown {
-            from {
-                transform: translateY(-20px);
-                opacity: 0;
-            }
-
-            to {
-                transform: translateY(0);
-                opacity: 1;
-            }
-        }
-
-        .command-search-box {
-            padding: 1.25rem;
-            border-bottom: 1px solid #1a1a1a;
-            position: relative;
-        }
-
-        .command-search-input {
-            width: 100%;
-            background-color: transparent;
-            border: none;
-            color: #e5e7eb;
-            font-size: 1rem;
-            padding-left: 2rem;
-            outline: none;
-        }
-
-        .command-search-input::placeholder {
-            color: #6b7280;
-        }
-
-        .command-search-icon {
-            position: absolute;
-            left: 1.25rem;
-            top: 50%;
-            transform: translateY(-50%);
-            color: #6b7280;
-            font-size: 1rem;
-        }
-
-        .command-results {
-            overflow-y: auto;
-            max-height: 50vh;
-        }
-
-        .command-results::-webkit-scrollbar {
-            width: 6px;
-        }
-
-        .command-results::-webkit-scrollbar-track {
-            background: #0a0a0a;
-        }
-
-        .command-results::-webkit-scrollbar-thumb {
-            background: #1a1a1a;
-            border-radius: 3px;
-        }
-
-        .command-section {
-            padding: 0.75rem 0;
-        }
-
-        .command-section-title {
-            color: #6b7280;
-            font-size: 0.75rem;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-            padding: 0.5rem 1.25rem;
-        }
-
-        .command-item {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 0.875rem 1.25rem;
-            color: #e5e7eb;
-            cursor: pointer;
-            transition: all 0.15s;
-            text-decoration: none;
-        }
-
-        .command-item:hover {
-            background-color: #111111;
-            color: #ffffff;
-        }
-
-        .command-item-left {
-            display: flex;
-            align-items: center;
-            gap: 0.875rem;
-        }
-
-        .command-item-icon {
-            width: 20px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.125rem;
-        }
-
-        .command-item-text {
-            font-size: 0.9rem;
-        }
-
-        .command-item-badge {
-            background-color: #1a1a1a;
-            color: #9ca3af;
-            padding: 0.25rem 0.625rem;
-            border-radius: 0.375rem;
-            font-size: 0.75rem;
-            font-weight: 500;
-        }
-
-        .command-item.current {
-            background-color: #1a1a1a;
-        }
-
-        /* Sidebar Nav */
-        .sidebar-nav {
-            padding: 0.5rem 0;
-            flex-grow: 1;
-        }
-
-        .nav-item {
-            padding: 0.875rem 1.5rem;
-            color: #9ca3af;
-            text-decoration: none;
-            display: flex;
-            align-items: center;
-            transition: all 0.2s ease;
-            border-left: 3px solid transparent;
-            cursor: pointer;
-        }
-
-        .nav-item:hover {
-            background-color: #111111;
-            color: #ffffff;
-        }
-
-        .nav-item.active {
-            background-color: #111111;
-            color: #ffffff;
-            border-left-color: #2563eb;
-        }
-
-        .nav-item i {
-            margin-right: 0.875rem;
-            font-size: 1.125rem;
-            width: 20px;
-        }
-
-        .nav-arrow {
-            margin-left: auto;
-            font-size: 0.875rem;
-        }
-
-        .sidebar-footer {
-            padding: 1.5rem;
-            border-top: 1px solid #1a1a1a;
-            font-size: 0.875rem;
-            color: #6b7280;
-        }
-
-        .footer-links {
-            display: flex;
-            gap: 0.5rem;
-            margin-bottom: 0.5rem;
-        }
-
-        .footer-links a {
-            color: #6b7280;
-            text-decoration: none;
-            transition: color 0.2s;
-        }
-
-        .footer-links a:hover {
-            color: #2563eb;
-        }
-
-        /* Language Switcher */
-        .language-switcher {
-            position: fixed;
-            top: 2rem;
-            right: 2rem;
-            z-index: 1001;
-        }
-
-        .lang-toggle {
-            background-color: #0f0f0f;
-            border: 1px solid #1a1a1a;
-            color: #e5e7eb;
-            padding: 0.5rem 1rem;
-            border-radius: 0.5rem;
-            font-size: 0.875rem;
-            font-weight: 500;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            cursor: pointer;
-            transition: all 0.2s;
-        }
-
-        .lang-toggle:hover {
-            background-color: #1a1a1a;
-            border-color: #2563eb;
-        }
-
-        /* Main Content */
-        .main-content {
-            margin-left: 280px;
-            padding: 2rem 3rem;
-            min-height: 100vh;
-        }
-
-        /* Hero Section */
-        .hero-section {
-            padding: 3rem 0 2rem;
-        }
-
-        .hero-title {
-            font-size: 3rem;
-            font-weight: 700;
-            margin-bottom: 0.5rem;
-            color: #ffffff;
-            line-height: 1.2;
-        }
-
-        .hero-title span {
-            color: #2563eb;
-        }
-
-        .hero-subtitle {
-            color: #9ca3af;
-            font-size: 1.125rem;
-            margin-bottom: 2rem;
-            font-weight: 400;
-            max-width: 800px;
-        }
-
-        /* Project Search Bar */
-        .project-search-section {
-            margin-bottom: 2.5rem;
-        }
-
-        .project-search-wrapper {
-            display: flex;
-            justify-content: flex-end;
-            align-items: center;
-            gap: 1rem;
-        }
-
-        .project-search-input-wrapper {
-            position: relative;
-            max-width: 400px;
-            flex: 1;
-        }
-
-        .project-search-input {
-            width: 100%;
-            background-color: #0f0f0f;
-            border: 1px solid #1a1a1a;
-            color: #e5e7eb;
-            padding: 0.875rem 1rem 0.875rem 3rem;
-            border-radius: 0.75rem;
-            font-size: 0.95rem;
-            transition: all 0.2s;
-        }
-
-        .project-search-input:focus {
-            outline: none;
-            border-color: #374151;
-            background-color: #111111;
-        }
-
-        .project-search-input::placeholder {
-            color: #6b7280;
-        }
-
-        .project-search-icon {
-            position: absolute;
-            left: 1rem;
-            top: 50%;
-            transform: translateY(-50%);
-            color: #6b7280;
-            font-size: 1.125rem;
-        }
-
-        .project-search-btn {
-            background-color: #1a1a1a;
-            border: 1px solid #262626;
-            color: #e5e7eb;
-            padding: 0.875rem 1.5rem;
-            border-radius: 0.75rem;
-            font-size: 0.95rem;
-            font-weight: 500;
-            cursor: pointer;
-            transition: all 0.2s;
-            white-space: nowrap;
-        }
-
-        .project-search-btn:hover {
-            background-color: #262626;
-            border-color: #374151;
-            color: #ffffff;
-        }
-
-        /* Project Card */
-        .project-card {
-            background-color: #0f0f0f;
-            border: 1px solid #1a1a1a;
-            border-radius: 0.75rem;
-            overflow: hidden;
-            transition: all 0.3s ease;
-            cursor: pointer;
-            display: flex;
-            flex-direction: column;
-            text-decoration: none;
-            color: inherit;
-            position: relative;
-            height: 100%;
-        }
-
-        @media (min-width: 992px) {
-            .project-card:hover {
-                transform: translateY(-8px);
-                border-color: #2563eb;
-                box-shadow: 0 20px 40px rgba(37, 99, 235, 0.2);
-            }
-        }
-
-        @media (max-width: 991px) {
-            .project-card:active {
-                transform: scale(0.98);
-                border-color: #2563eb;
-            }
-        }
-
-        .project-badge {
-            position: absolute;
-            top: 1rem;
-            right: 1rem;
-            background-color: #84cc16;
-            color: #000000;
-            padding: 0.375rem 0.875rem;
-            border-radius: 0.5rem;
-            font-size: 0.75rem;
-            font-weight: 600;
-            z-index: 1;
-            display: flex;
-            align-items: center;
-            gap: 0.375rem;
-        }
-
-        .project-badge i {
-            font-size: 0.875rem;
-        }
-
-        .project-image {
-            width: 100%;
-            height: 200px;
-            object-fit: cover;
-            background-color: #1a1a1a;
-        }
-
-        .project-content {
-            padding: 1.5rem;
-            flex-grow: 1;
-            display: flex;
-            flex-direction: column;
-        }
-
-        .project-title {
-            color: #ffffff;
-            font-weight: 600;
-            font-size: 1.25rem;
-            margin-bottom: 0.75rem;
-            line-height: 1.4;
-        }
-
-        .project-desc {
-            color: #9ca3af;
-            font-size: 0.875rem;
-            line-height: 1.6;
-            margin-bottom: 1.25rem;
-            flex-grow: 1;
-        }
-
-        .project-tech {
-            display: flex;
-            gap: 0.75rem;
-            flex-wrap: wrap;
-            align-items: center;
-        }
-
-        .tech-icon {
-            width: 32px;
-            height: 32px;
-            background-color: #1a1a1a;
-            border: 1px solid #262626;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: all 0.2s;
-            font-size: 1rem;
-        }
-
-        .tech-icon:hover {
-            background-color: #262626;
-            border-color: #2563eb;
-            transform: scale(1.1);
-        }
-
-        /* Pagination */
-        .pagination-section {
-            margin-top: 3rem;
-            display: flex;
-            justify-content: center;
-        }
-
-        .pagination {
-            display: flex;
-            gap: 0.5rem;
-            align-items: center;
-        }
-
-        .page-item {
-            background-color: #0f0f0f;
-            border: 1px solid #1a1a1a;
-            color: #9ca3af;
-            width: 40px;
-            height: 40px;
-            border-radius: 0.5rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            transition: all 0.2s;
-            font-size: 0.875rem;
-            font-weight: 500;
-            text-decoration: none;
-        }
-
-        .page-item:hover {
-            background-color: #1a1a1a;
-            border-color: #374151;
-            color: #ffffff;
-        }
-
-        .page-item.active {
-            background-color: #1a1a1a;
-            border-color: #374151;
-            color: #ffffff;
-        }
-
-        .page-item.disabled {
-            opacity: 0.4;
-            cursor: not-allowed;
-            pointer-events: none;
-        }
-
-        .page-dots {
-            color: #6b7280;
-            padding: 0 0.5rem;
-        }
-
-        /* Back to Top Button */
-        .back-to-top {
-            position: fixed;
-            bottom: 2rem;
-            right: 2rem;
-            width: 50px;
-            height: 50px;
-            background: linear-gradient(135deg, rgba(15, 15, 15, 0.95) 0%, rgba(26, 26, 26, 0.95) 100%);
-            border: 1px solid rgba(107, 114, 128, 0.3);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            opacity: 0;
-            visibility: hidden;
-            transform: translateY(20px);
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            z-index: 999;
-            backdrop-filter: blur(10px);
-        }
-
-        .back-to-top.show {
-            opacity: 1;
-            visibility: visible;
-            transform: translateY(0);
-        }
-
-        .back-to-top:hover {
-            background: linear-gradient(135deg, rgba(37, 99, 235, 0.2) 0%, rgba(37, 99, 235, 0.3) 100%);
-            border-color: rgba(37, 99, 235, 0.5);
-            transform: translateY(-5px) scale(1.1);
-        }
-
-        .back-to-top i {
-            color: #ffffff;
-            font-size: 1.25rem;
-            animation: bounce-up 2s ease-in-out infinite;
-        }
-
-        @keyframes bounce-up {
-
-            0%,
-            100% {
-                transform: translateY(0);
-            }
-
-            50% {
-                transform: translateY(-4px);
-            }
-        }
-
-        /* Divider */
-        .divider {
-            height: 1px;
-            background-color: #1a1a1a;
-            margin: 2rem 0;
-        }
-
-        .mobile-overlay {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.7);
-            z-index: 1001;
-            opacity: 0;
-            transition: opacity 0.3s ease;
-            pointer-events: none;
-        }
-
-        .mobile-overlay.active {
-            opacity: 1;
-            pointer-events: auto;
-        }
-
-        /* Responsive */
-        @media (max-width: 991px) {
-            .mobile-top-navbar {
-                display: block;
-            }
-
-            .sidebar {
-                transform: translateX(-100%);
-            }
-
-            .sidebar.show {
-                transform: translateX(0);
-            }
-
-            .sidebar-close-btn {
-                display: flex;
-            }
-
-            .mobile-overlay {
-                display: block;
-            }
-
-            .main-content {
-                margin-left: 0;
-                padding: 2rem 1.5rem;
-                margin-top: 70px;
-            }
-
-            .hero-title {
-                font-size: 2.5rem;
-            }
-
-            .language-switcher {
-                display: none;
-            }
-
-            .project-search-wrapper {
-                flex-direction: column;
-                align-items: stretch;
-            }
-
-            .project-search-input-wrapper {
-                max-width: 100%;
-            }
-
-            .project-search-btn {
-                width: 100%;
-                padding: 1rem 1.5rem;
-            }
-        }
-
-        @media (min-width: 992px) {
-            .sidebar {
-                transform: translateX(0) !important;
-            }
-        }
-
-        @media (max-width: 576px) {
-            .hero-title {
-                font-size: 2rem;
-            }
-
-            .hero-subtitle {
-                font-size: 1rem;
-            }
-
-            .back-to-top {
-                bottom: 1.5rem;
-                right: 1.5rem;
-                width: 45px;
-                height: 45px;
-            }
-
-            .back-to-top i {
-                font-size: 1.125rem;
-            }
-
-            .pagination {
-                gap: 0.375rem;
-            }
-
-            .page-item {
-                width: 36px;
-                height: 36px;
-                font-size: 0.8rem;
-            }
-        }
-    </style>
+    <link rel="stylesheet" href="css/style.css">
 </head>
 
 <body>
@@ -967,8 +16,7 @@
     <nav class="mobile-top-navbar">
         <div class="mobile-navbar-content">
             <div class="mobile-profile">
-                <img src="img/hero.png"
-                    alt="Profile" class="mobile-profile-img">
+                <img src="img/hero.png" alt="Profile" class="mobile-profile-img">
                 <div class="mobile-profile-info">
                     <div class="mobile-profile-name">
                         Ananda Irfansyah
@@ -987,8 +35,10 @@
             </div>
         </div>
     </nav>
+
     <!-- Mobile Overlay -->
     <div class="mobile-overlay" id="mobileOverlay" onclick="toggleMobileMenu()"></div>
+
     <!-- Language Switcher (Desktop only) -->
     <div class="language-switcher">
         <button class="lang-toggle" onclick="toggleLanguage()">
@@ -996,6 +46,7 @@
             <span id="currentLang">EN</span>
         </button>
     </div>
+
     <!-- Command Palette Modal -->
     <div class="command-palette" id="commandPalette" onclick="closeCommandPalette(event)">
         <div class="command-palette-content" onclick="event.stopPropagation()">
@@ -1014,14 +65,12 @@
                         </div>
                         <span class="command-item-badge">Pages</span>
                     </a>
-    
                     <a href="projects.html" class="command-item current">
                         <div class="command-item-left">
                             <i class="bi bi-kanban command-item-icon"></i>
                             <span class="command-item-text">Projects</span>
                         </div>
                         <span class="command-item-badge">You are here</span>
-    
                     </a>
                     <a href="blog.html" class="command-item">
                         <div class="command-item-left">
@@ -1090,50 +139,18 @@
                         <span class="command-item-badge">Link</span>
                     </a>
                 </div>
-                <div class="command-section">
-                    <div class="command-section-title">EXTERNAL LINKS</div>
-                    <a href="#" class="command-item">
-                        <div class="command-item-left">
-                            <i class="bi bi-heart-fill command-item-icon"></i>
-                            <span class="command-item-text">Support</span>
-                        </div>
-                        <span class="command-item-badge">Link</span>
-                    </a>
-                    <a href="#" class="command-item">
-                        <div class="command-item-left">
-                            <i class="bi bi-file-pdf command-item-icon"></i>
-                            <span class="command-item-text">CV PDF</span>
-                        </div>
-                        <span class="command-item-badge">Link</span>
-                    </a>
-                    <a href="#" class="command-item">
-                        <div class="command-item-left">
-                            <i class="bi bi-file-word command-item-icon"></i>
-                            <span class="command-item-text">CV Word</span>
-                        </div>
-                        <span class="command-item-badge">Link</span>
-                    </a>
-                    <a href="#" class="command-item">
-                        <div class="command-item-left">
-                            <i class="bi bi-files command-item-icon"></i>
-                            <span class="command-item-text">CV Copy</span>
-                        </div>
-                        <span class="command-item-badge">Link</span>
-                    </a>
-                </div>
             </div>
         </div>
     </div>
 
     <!-- Sidebar -->
     <aside class="sidebar" id="sidebar">
-        <!-- Close button (mobile only) -->
         <button class="sidebar-close-btn" onclick="toggleMobileMenu()" id="sidebarCloseBtn">
             <i class="bi bi-x-lg"></i>
         </button>
+
         <div class="sidebar-header">
-            <img src="img/hero.png"
-                alt="Profile" class="profile-img">
+            <img src="img/hero.png" alt="Profile" class="profile-img">
             <div class="profile-name">
                 Ananda Irfansyah
                 <i class="bi bi-patch-check-fill verified-badge"></i>
@@ -1186,15 +203,17 @@
             <div>&copy; 2025 Ananda Irfansyah</div>
         </div>
     </aside>
+
     <!-- Main Content -->
     <main class="main-content">
         <div class="container-fluid px-0">
             <!-- Hero Section -->
-            <section class="hero-section">
+            <section class="hero-section projects-hero">
                 <div class="row">
                     <div class="col-12">
                         <h1 class="hero-title">
-                            My <span data-lang="projects-title">Projects</span>
+                            <span data-lang="hero-greeting">My</span>
+                            <span class="hero-name">Projects</span>
                         </h1>
                         <p class="hero-subtitle" data-lang="projects-subtitle">
                             Where effort met execution, these projects are artifacts of discipline and continuous
@@ -1203,6 +222,7 @@
                     </div>
                 </div>
             </section>
+
             <!-- Project Search Section -->
             <section class="project-search-section">
                 <div class="row">
@@ -1218,6 +238,7 @@
                     </div>
                 </div>
             </section>
+
             <!-- Projects Grid -->
             <section class="projects-grid-section">
                 <div class="row g-4">
@@ -1229,9 +250,9 @@
                                 FEATURED
                             </span>
                             <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&h=400&fit=crop"
-                                alt="ridwaanhall.com" class="project-image">
+                                alt="anandairfansyah.my.id" class="project-image">
                             <div class="project-content">
-                                <h3 class="project-title">ridwaanhall.com</h3>
+                                <h3 class="project-title">anandairfansyah.my.id</h3>
                                 <p class="project-desc">
                                     Advanced developer portfolio platform with individual file data management,
                                     real-time API integrations, and enterprise-grade security.
@@ -1259,6 +280,7 @@
                             </div>
                         </a>
                     </div>
+
                     <!-- Project 2 - Featured -->
                     <div class="col-lg-4 col-md-6 col-12">
                         <a href="#" class="project-card">
@@ -1290,6 +312,7 @@
                             </div>
                         </a>
                     </div>
+
                     <!-- Project 3 - Featured -->
                     <div class="col-lg-4 col-md-6 col-12">
                         <a href="#" class="project-card">
@@ -1319,6 +342,7 @@
                             </div>
                         </a>
                     </div>
+
                     <!-- Project 4 -->
                     <div class="col-lg-4 col-md-6 col-12">
                         <a href="#" class="project-card">
@@ -1340,6 +364,7 @@
                             </div>
                         </a>
                     </div>
+
                     <!-- Project 5 -->
                     <div class="col-lg-4 col-md-6 col-12">
                         <a href="#" class="project-card">
@@ -1368,6 +393,7 @@
                             </div>
                         </a>
                     </div>
+
                     <!-- Project 6 -->
                     <div class="col-lg-4 col-md-6 col-12">
                         <a href="#" class="project-card">
@@ -1398,6 +424,7 @@
                     </div>
                 </div>
             </section>
+
             <!-- Pagination -->
             <section class="pagination-section">
                 <div class="pagination">
@@ -1416,79 +443,18 @@
             </section>
         </div>
     </main>
+
     <!-- Back to Top Button -->
     <button class="back-to-top" id="backToTop" onclick="scrollToTop()" aria-label="Back to top">
         <i class="bi bi-arrow-up"></i>
     </button>
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="js/script.js"></script>
+
+    <!-- Language System (Page Specific - Will be replaced by Laravel) -->
     <script>
-        // Command Palette Functions
-        function openCommandPalette() {
-            const palette = document.getElementById('commandPalette');
-            palette.classList.add('active');
-            document.getElementById('commandSearchInput').focus();
-            document.body.style.overflow = 'hidden';
-        }
-        function closeCommandPalette(event) {
-            if (event && event.target.id !== 'commandPalette') return;
-            const palette = document.getElementById('commandPalette');
-            palette.classList.remove('active');
-            document.body.style.overflow = '';
-        }
-        // Keyboard shortcuts
-        document.addEventListener('keydown', function (e) {
-            if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
-                e.preventDefault();
-                openCommandPalette();
-            }
-            if (e.key === 'Escape') {
-                closeCommandPalette(e);
-            }
-        });
-        // Command palette search
-        document.getElementById('commandSearchInput').addEventListener('input', function (e) {
-            const query = e.target.value.toLowerCase();
-            const items = document.querySelectorAll('.command-item');
-            const sections = document.querySelectorAll('.command-section');
-            items.forEach(item => {
-                const text = item.querySelector('.command-item-text').textContent.toLowerCase();
-                if (text.includes(query)) {
-                    item.style.display = 'flex';
-                } else {
-                    item.style.display = 'none';
-                }
-            });
-            sections.forEach(section => {
-                const visibleItems = section.querySelectorAll('.command-item[style="display: flex;"]');
-                if (visibleItems.length === 0 && query !== '') {
-                    section.style.display = 'none';
-                } else {
-                    section.style.display = 'block';
-                }
-            });
-        });
-        // Mobile menu toggle
-        function toggleMobileMenu() {
-            const sidebar = document.getElementById('sidebar');
-            const overlay = document.getElementById('mobileOverlay');
-            sidebar.classList.toggle('show');
-            overlay.classList.toggle('active');
-            if (sidebar.classList.contains('show')) {
-                document.body.style.overflow = 'hidden';
-            } else {
-                document.body.style.overflow = '';
-            }
-        }
-        // Close mobile menu when clicking nav item
-        function closeMobileMenu(event) {
-            if (window.innerWidth <= 991) {
-                const sidebar = document.getElementById('sidebar');
-                if (sidebar.classList.contains('show')) {
-                    toggleMobileMenu();
-                }
-            }
-        }
-        // Language translations
+        // Language translations (TEMPORARY - will be replaced by Laravel localization)
         const translations = {
             en: {
                 'status': 'Open to Work',
@@ -1519,7 +485,9 @@
                 'search-btn': 'Cari'
             }
         };
+
         let currentLanguage = 'en';
+
         function toggleLanguage() {
             currentLanguage = currentLanguage === 'en' ? 'id' : 'en';
             updateLanguage();
@@ -1528,6 +496,7 @@
                 document.body.style.opacity = '1';
             }, 150);
         }
+
         function updateLanguage() {
             const elements = document.querySelectorAll('[data-lang]');
             elements.forEach(element => {
@@ -1540,6 +509,7 @@
                     }
                 }
             });
+
             // Update placeholder separately
             const searchInput = document.getElementById('projectSearchInput');
             if (searchInput) {
@@ -1548,43 +518,14 @@
                     searchInput.placeholder = translations[currentLanguage][placeholderKey];
                 }
             }
+
             const langElement = document.getElementById('currentLang');
             if (langElement) {
                 langElement.textContent = currentLanguage.toUpperCase();
             }
         }
-        // Project search functionality
-        document.getElementById('projectSearchInput').addEventListener('input', function (e) {
-            const query = e.target.value.toLowerCase();
-            const projectCards = document.querySelectorAll('.project-card');
-            projectCards.forEach(card => {
-                const title = card.querySelector('.project-title').textContent.toLowerCase();
-                const desc = card.querySelector('.project-desc').textContent.toLowerCase();
-                if (title.includes(query) || desc.includes(query)) {
-                    card.parentElement.style.display = 'block';
-                } else {
-                    card.parentElement.style.display = 'none';
-                }
-            });
-        });
-        // Back to Top functionality
-        const backToTopButton = document.getElementById('backToTop');
-        window.addEventListener('scroll', () => {
-            if (window.pageYOffset > 300) {
-                backToTopButton.classList.add('show');
-            } else {
-                backToTopButton.classList.remove('show');
-            }
-        });
-        function scrollToTop() {
-            window.scrollTo({
-                top: 0,
-                behavior: 'smooth'
-            });
-        }
-        // Add body transition
-        document.body.style.transition = 'opacity 0.2s ease';
-        // Initialize
+
+        // Initialize language
         updateLanguage();
     </script>
 </body>

@@ -8,1111 +8,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Inter', sans-serif;
-        }
-
-        body {
-            background-color: #000000;
-            color: #e0e0e0;
-            overflow-x: hidden;
-        }
-
-        /* Mobile Top Navbar */
-        .mobile-top-navbar {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 70px;
-            background-color: #0a0a0a;
-            border-bottom: 1px solid #1a1a1a;
-            z-index: 1001;
-            padding: 0 1rem;
-            transition: transform 0.3s ease;
-        }
-
-        .mobile-navbar-content {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            height: 100%;
-        }
-
-        .mobile-profile {
-            display: flex;
-            align-items: center;
-            gap: 0.75rem;
-        }
-
-        .mobile-profile-img {
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            border: 2px solid #2563eb;
-        }
-
-        .mobile-profile-info {
-            display: flex;
-            flex-direction: column;
-        }
-
-        .mobile-profile-name {
-            color: #ffffff;
-            font-weight: 600;
-            font-size: 0.95rem;
-            display: flex;
-            align-items: center;
-            gap: 0.35rem;
-        }
-
-        .mobile-profile-name i {
-            color: #2563eb;
-            font-size: 0.85rem;
-        }
-
-        .mobile-profile-username {
-            color: #6b7280;
-            font-size: 0.75rem;
-        }
-
-        .mobile-navbar-actions {
-            display: flex;
-            gap: 0.5rem;
-        }
-
-        .mobile-nav-btn {
-            background-color: #0f0f0f;
-            border: 1px solid #1a1a1a;
-            color: #e5e7eb;
-            width: 40px;
-            height: 40px;
-            border-radius: 0.5rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            transition: all 0.2s;
-        }
-
-        .mobile-nav-btn:hover {
-            background-color: #1a1a1a;
-            border-color: #2563eb;
-        }
-
-        /* Sidebar */
-        .sidebar {
-            position: fixed;
-            top: 0;
-            left: 0;
-            height: 100vh;
-            width: 280px;
-            background-color: #0a0a0a;
-            border-right: 1px solid #1a1a1a;
-            overflow-y: auto;
-            z-index: 1002;
-            display: flex;
-            flex-direction: column;
-            transition: transform 0.3s ease;
-        }
-
-        .sidebar::-webkit-scrollbar {
-            width: 6px;
-        }
-
-        .sidebar::-webkit-scrollbar-track {
-            background: #0a0a0a;
-        }
-
-        .sidebar::-webkit-scrollbar-thumb {
-            background: #1a1a1a;
-            border-radius: 3px;
-        }
-
-        .sidebar-close-btn {
-            display: none;
-            position: absolute;
-            top: 1rem;
-            right: 1rem;
-            background-color: #0f0f0f;
-            border: 1px solid #1a1a1a;
-            color: #e5e7eb;
-            width: 40px;
-            height: 40px;
-            border-radius: 0.5rem;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            transition: all 0.2s;
-            z-index: 10;
-        }
-
-        .sidebar-close-btn:hover {
-            background-color: #1a1a1a;
-            border-color: #2563eb;
-        }
-
-        .sidebar-header {
-            padding: 2rem 1.5rem 1.5rem;
-            text-align: center;
-        }
-
-        .profile-img {
-            width: 80px;
-            height: 80px;
-            border-radius: 50%;
-            object-fit: cover;
-            border: 3px solid #2563eb;
-            margin-bottom: 1rem;
-        }
-
-        .profile-name {
-            font-size: 1.25rem;
-            font-weight: 600;
-            color: #ffffff;
-            margin-bottom: 0.25rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 0.5rem;
-        }
-
-        .verified-badge {
-            color: #2563eb;
-            font-size: 1.1rem;
-        }
-
-        .profile-username {
-            color: #6b7280;
-            font-size: 0.875rem;
-            margin-bottom: 1rem;
-        }
-
-        .status-badge {
-            background-color: #10b981;
-            color: #ffffff;
-            padding: 0.5rem 1rem;
-            border-radius: 0.5rem;
-            font-size: 0.75rem;
-            font-weight: 500;
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .status-dot {
-            width: 6px;
-            height: 6px;
-            background-color: #ffffff;
-            border-radius: 50%;
-            animation: pulse 2s ease-in-out infinite;
-        }
-
-        @keyframes pulse {
-
-            0%,
-            100% {
-                opacity: 1;
-            }
-
-            50% {
-                opacity: 0.5;
-            }
-        }
-
-        /* Command Palette Search */
-        .search-box {
-            margin: 0 1rem 1rem;
-            position: relative;
-        }
-
-        .search-input {
-            width: 100%;
-            background-color: #0f0f0f;
-            border: 1px solid #1a1a1a;
-            color: #9ca3af;
-            padding: 0.625rem 1rem 0.625rem 2.5rem;
-            border-radius: 0.5rem;
-            font-size: 0.875rem;
-            transition: all 0.2s;
-            cursor: pointer;
-        }
-
-        .search-input:focus {
-            outline: none;
-            border-color: #2563eb;
-            background-color: #111111;
-        }
-
-        .search-icon {
-            position: absolute;
-            left: 0.875rem;
-            top: 50%;
-            transform: translateY(-50%);
-            color: #6b7280;
-            font-size: 0.875rem;
-            pointer-events: none;
-        }
-
-        .search-shortcut {
-            position: absolute;
-            right: 0.875rem;
-            top: 50%;
-            transform: translateY(-50%);
-            background-color: #1a1a1a;
-            color: #6b7280;
-            padding: 0.125rem 0.375rem;
-            border-radius: 0.25rem;
-            font-size: 0.75rem;
-            font-weight: 500;
-            pointer-events: none;
-        }
-
-        /* Command Palette Modal */
-        .command-palette {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background-color: rgba(0, 0, 0, 0.8);
-            backdrop-filter: blur(8px);
-            z-index: 2000;
-            padding: 2rem;
-            animation: fadeIn 0.2s ease;
-        }
-
-        .command-palette.active {
-            display: flex;
-            align-items: flex-start;
-            justify-content: center;
-            padding-top: 5rem;
-        }
-
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-            }
-
-            to {
-                opacity: 1;
-            }
-        }
-
-        .command-palette-content {
-            background-color: #0a0a0a;
-            border: 1px solid #1a1a1a;
-            border-radius: 1rem;
-            width: 100%;
-            max-width: 640px;
-            max-height: 70vh;
-            display: flex;
-            flex-direction: column;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
-            animation: slideDown 0.3s ease;
-        }
-
-        @keyframes slideDown {
-            from {
-                transform: translateY(-20px);
-                opacity: 0;
-            }
-
-            to {
-                transform: translateY(0);
-                opacity: 1;
-            }
-        }
-
-        .command-search-box {
-            padding: 1.25rem;
-            border-bottom: 1px solid #1a1a1a;
-            position: relative;
-        }
-
-        .command-search-input {
-            width: 100%;
-            background-color: transparent;
-            border: none;
-            color: #e5e7eb;
-            font-size: 1rem;
-            padding-left: 2rem;
-            outline: none;
-        }
-
-        .command-search-input::placeholder {
-            color: #6b7280;
-        }
-
-        .command-search-icon {
-            position: absolute;
-            left: 1.25rem;
-            top: 50%;
-            transform: translateY(-50%);
-            color: #6b7280;
-            font-size: 1rem;
-        }
-
-        .command-results {
-            overflow-y: auto;
-            max-height: 50vh;
-        }
-
-        .command-results::-webkit-scrollbar {
-            width: 6px;
-        }
-
-        .command-results::-webkit-scrollbar-track {
-            background: #0a0a0a;
-        }
-
-        .command-results::-webkit-scrollbar-thumb {
-            background: #1a1a1a;
-            border-radius: 3px;
-        }
-
-        .command-section {
-            padding: 0.75rem 0;
-        }
-
-        .command-section-title {
-            color: #6b7280;
-            font-size: 0.75rem;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-            padding: 0.5rem 1.25rem;
-        }
-
-        .command-item {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 0.875rem 1.25rem;
-            color: #e5e7eb;
-            cursor: pointer;
-            transition: all 0.15s;
-            text-decoration: none;
-        }
-
-        .command-item:hover {
-            background-color: #111111;
-            color: #ffffff;
-        }
-
-        .command-item-left {
-            display: flex;
-            align-items: center;
-            gap: 0.875rem;
-        }
-
-        .command-item-icon {
-            width: 20px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.125rem;
-        }
-
-        .command-item-text {
-            font-size: 0.9rem;
-        }
-
-        .command-item-badge {
-            background-color: #1a1a1a;
-            color: #9ca3af;
-            padding: 0.25rem 0.625rem;
-            border-radius: 0.375rem;
-            font-size: 0.75rem;
-            font-weight: 500;
-        }
-
-        .command-item.current {
-            background-color: #1a1a1a;
-        }
-
-        .command-item.current .command-item-badge {
-            background-color: #374151;
-            color: #d1d5db;
-        }
-
-        /* Sidebar Nav */
-        .sidebar-nav {
-            padding: 0.5rem 0;
-            flex-grow: 1;
-        }
-
-        .nav-item {
-            padding: 0.875rem 1.5rem;
-            color: #9ca3af;
-            text-decoration: none;
-            display: flex;
-            align-items: center;
-            transition: all 0.2s ease;
-            border-left: 3px solid transparent;
-            cursor: pointer;
-        }
-
-        .nav-item:hover {
-            background-color: #111111;
-            color: #ffffff;
-        }
-
-        .nav-item.active {
-            background-color: #111111;
-            color: #ffffff;
-            border-left-color: #2563eb;
-        }
-
-        .nav-item i {
-            margin-right: 0.875rem;
-            font-size: 1.125rem;
-            width: 20px;
-        }
-
-        .nav-arrow {
-            margin-left: auto;
-            font-size: 0.875rem;
-        }
-
-        .sidebar-footer {
-            padding: 1.5rem;
-            border-top: 1px solid #1a1a1a;
-            font-size: 0.875rem;
-            color: #6b7280;
-        }
-
-        .footer-links {
-            display: flex;
-            gap: 0.5rem;
-            margin-bottom: 0.5rem;
-        }
-
-        .footer-links a {
-            color: #6b7280;
-            text-decoration: none;
-            transition: color 0.2s;
-        }
-
-        .footer-links a:hover {
-            color: #2563eb;
-        }
-
-        /* Language Switcher */
-        .language-switcher {
-            position: fixed;
-            top: 2rem;
-            right: 2rem;
-            z-index: 1001;
-        }
-
-        .lang-toggle {
-            background-color: #0f0f0f;
-            border: 1px solid #1a1a1a;
-            color: #e5e7eb;
-            padding: 0.5rem 1rem;
-            border-radius: 0.5rem;
-            font-size: 0.875rem;
-            font-weight: 500;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            cursor: pointer;
-            transition: all 0.2s;
-        }
-
-        .lang-toggle:hover {
-            background-color: #1a1a1a;
-            border-color: #2563eb;
-        }
-
-        /* Main Content */
-        .main-content {
-            margin-left: 280px;
-            padding: 2rem 3rem;
-            min-height: 100vh;
-            max-width: 1400px;
-        }
-
-        /* About Header */
-        .about-header {
-            padding: 3rem 0 2rem;
-        }
-
-        .about-title {
-            font-size: 3rem;
-            font-weight: 700;
-            color: #ffffff;
-            margin-bottom: 0.75rem;
-            line-height: 1.2;
-        }
-
-        .about-title .highlight {
-            color: #2563eb;
-        }
-
-        .about-subtitle {
-            color: #9ca3af;
-            font-size: 1.125rem;
-            line-height: 1.6;
-            max-width: 700px;
-        }
-
-        /* Tab Navigation */
-        .tab-navigation {
-            display: flex;
-            gap: 0;
-            border-bottom: 1px solid #1a1a1a;
-            margin: 2rem 0;
-            overflow-x: auto;
-            -webkit-overflow-scrolling: touch;
-            flex-wrap: nowrap;
-        }
-
-        .tab-navigation::-webkit-scrollbar {
-            height: 0;
-        }
-
-        .tab-item {
-            padding: 1rem 1.5rem;
-            color: #9ca3af;
-            text-decoration: none;
-            font-size: 0.9375rem;
-            font-weight: 500;
-            border-bottom: 2px solid transparent;
-            transition: all 0.2s;
-            white-space: nowrap;
-            cursor: pointer;
-            flex-shrink: 0;
-        }
-
-        .tab-item:hover {
-            color: #ffffff;
-        }
-
-        .tab-item.active {
-            color: #ffffff;
-            border-bottom-color: #2563eb;
-        }
-
-        /* CV Section */
-        .cv-section {
-            background-color: #0f0f0f;
-            border: 1px solid #1a1a1a;
-            border-radius: 1rem;
-            padding: 2rem;
-            margin-bottom: 2rem;
-        }
-
-        .cv-header {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-            margin-bottom: 0.75rem;
-        }
-
-        .cv-icon {
-            font-size: 1.5rem;
-            color: #2563eb;
-        }
-
-        .cv-title {
-            font-size: 1.25rem;
-            font-weight: 600;
-            color: #ffffff;
-            margin: 0;
-        }
-
-        .cv-subtitle {
-            color: #9ca3af;
-            font-size: 0.875rem;
-            margin-bottom: 1rem;
-            padding-left: 2.5rem;
-        }
-
-        .cv-note {
-            display: flex;
-            align-items: flex-start;
-            gap: 0.625rem;
-            color: #6b7280;
-            font-size: 0.875rem;
-            margin-bottom: 1.5rem;
-            padding: 0.75rem 1rem;
-            background-color: #0a0a0a;
-            border-radius: 0.5rem;
-            border: 1px solid #1a1a1a;
-        }
-
-        .cv-note i {
-            margin-top: 0.125rem;
-            color: #2563eb;
-        }
-
-        .cv-buttons {
-            display: flex;
-            gap: 0.75rem;
-            flex-wrap: wrap;
-        }
-
-        .btn {
-            padding: 0.75rem 1.25rem;
-            font-weight: 500;
-            border-radius: 0.5rem;
-            transition: all 0.2s;
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            font-size: 0.875rem;
-            cursor: pointer;
-            text-decoration: none;
-            border: none;
-        }
-
-        .btn-outline {
-            background-color: #1a1a1a;
-            border: 1px solid #262626;
-            color: #e5e7eb;
-        }
-
-        .btn-outline:hover {
-            background-color: #262626;
-            border-color: #2563eb;
-            color: #ffffff;
-            transform: translateY(-2px);
-        }
-
-        /* Content Card */
-        .content-card {
-            background-color: #0f0f0f;
-            border: 1px solid #1a1a1a;
-            border-radius: 1rem;
-            padding: 2.5rem;
-            margin-bottom: 2rem;
-        }
-
-        .status-tag {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            background-color: rgba(16, 185, 129, 0.1);
-            color: #10b981;
-            padding: 0.5rem 1rem;
-            border-radius: 0.5rem;
-            font-size: 0.8125rem;
-            font-weight: 500;
-            margin-bottom: 2rem;
-            border: 1px solid rgba(16, 185, 129, 0.2);
-        }
-
-        .status-tag i {
-            font-size: 0.5rem;
-        }
-
-        .content-title {
-            font-size: 1.75rem;
-            font-weight: 600;
-            color: #ffffff;
-            margin-bottom: 1.5rem;
-            line-height: 1.3;
-        }
-
-        .content-text {
-            color: #d1d5db;
-            line-height: 1.8;
-            margin-bottom: 1.25rem;
-            font-size: 0.9375rem;
-        }
-
-        .content-closing {
-            font-size: 1.5rem;
-            font-weight: 600;
-            color: #2563eb;
-            margin-top: 2rem;
-        }
-
-        /* Timeline Item */
-        .timeline-item {
-            background-color: #0f0f0f;
-            border: 1px solid #1a1a1a;
-            border-radius: 1rem;
-            padding: 2rem;
-            margin-bottom: 1.5rem;
-            transition: all 0.3s ease;
-        }
-
-        .timeline-item:hover {
-            border-color: #2563eb;
-            box-shadow: 0 4px 20px rgba(37, 99, 235, 0.1);
-        }
-
-        .timeline-header {
-            display: flex;
-            align-items: flex-start;
-            gap: 1.25rem;
-            margin-bottom: 1.5rem;
-        }
-
-        .timeline-logo {
-            width: 56px;
-            height: 56px;
-            border-radius: 0.75rem;
-            object-fit: cover;
-            background-color: #1a1a1a;
-            border: 1px solid #262626;
-            flex-shrink: 0;
-        }
-
-        .timeline-info {
-            flex: 1;
-        }
-
-        .timeline-title {
-            font-size: 1.125rem;
-            font-weight: 600;
-            color: #ffffff;
-            margin-bottom: 0.5rem;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            line-height: 1.4;
-        }
-
-        .timeline-link {
-            color: #6b7280;
-            font-size: 0.875rem;
-            transition: color 0.2s;
-        }
-
-        .timeline-link:hover {
-            color: #2563eb;
-        }
-
-        .timeline-company {
-            color: #9ca3af;
-            font-size: 0.875rem;
-            font-style: italic;
-            margin-bottom: 0.5rem;
-        }
-
-        .timeline-location {
-            display: flex;
-            align-items: center;
-            gap: 0.375rem;
-            color: #9ca3af;
-            font-size: 0.875rem;
-        }
-
-        .timeline-date {
-            color: #2563eb;
-            font-size: 0.875rem;
-            font-weight: 500;
-            margin-left: auto;
-            white-space: nowrap;
-        }
-
-        .timeline-meta {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-            flex-wrap: wrap;
-            margin-top: 0.75rem;
-        }
-
-        .meta-item {
-            display: flex;
-            align-items: center;
-            gap: 0.375rem;
-            color: #9ca3af;
-            font-size: 0.875rem;
-        }
-
-        .meta-item i {
-            font-size: 0.875rem;
-        }
-
-        .timeline-role {
-            font-weight: 500;
-            color: #ffffff;
-            font-size: 1rem;
-            margin-bottom: 0.75rem;
-        }
-
-        .timeline-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.375rem;
-            background-color: rgba(16, 185, 129, 0.1);
-            color: #10b981;
-            padding: 0.25rem 0.75rem;
-            border-radius: 0.375rem;
-            font-size: 0.75rem;
-            font-weight: 500;
-            margin-left: 0.5rem;
-            border: 1px solid rgba(16, 185, 129, 0.2);
-        }
-
-        .timeline-badge i {
-            font-size: 0.5rem;
-        }
-
-        .timeline-divider {
-            margin: 1.5rem 0;
-            height: 1px;
-            background-color: #1a1a1a;
-        }
-
-        .achievements-toggle {
-            background-color: #1a1a1a;
-            border: 1px solid #262626;
-            color: #e5e7eb;
-            padding: 0.625rem 1rem;
-            border-radius: 0.5rem;
-            font-size: 0.875rem;
-            cursor: pointer;
-            transition: all 0.2s;
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            margin-top: 1rem;
-        }
-
-        .achievements-toggle:hover {
-            background-color: #262626;
-            border-color: #374151;
-        }
-
-        .achievements-toggle i {
-            transition: transform 0.2s;
-        }
-
-        .achievements-list {
-            display: none;
-            margin-top: 1.25rem;
-            padding-left: 0.5rem;
-        }
-
-        .achievements-list.show {
-            display: block;
-        }
-
-        .achievement-item {
-            color: #d1d5db;
-            font-size: 0.9375rem;
-            line-height: 1.7;
-            margin-bottom: 0.75rem;
-            padding-left: 1.25rem;
-            position: relative;
-        }
-
-        .achievement-item:before {
-            content: "•";
-            position: absolute;
-            left: 0;
-            color: #2563eb;
-            font-size: 1.25rem;
-        }
-
-        .credential-actions {
-            display: flex;
-            gap: 0.75rem;
-            flex-wrap: wrap;
-            margin-top: 1rem;
-        }
-
-        .credential-actions .btn {
-            padding: 0.625rem 1rem;
-            font-size: 0.875rem;
-        }
-
-        /* Back to Top Button */
-        .back-to-top {
-            position: fixed;
-            bottom: 2rem;
-            right: 2rem;
-            width: 50px;
-            height: 50px;
-            background: linear-gradient(135deg, rgba(15, 15, 15, 0.95) 0%, rgba(26, 26, 26, 0.95) 100%);
-            border: 1px solid rgba(107, 114, 128, 0.3);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            opacity: 0;
-            visibility: hidden;
-            transform: translateY(20px);
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            z-index: 999;
-            backdrop-filter: blur(10px);
-        }
-
-        .back-to-top.show {
-            opacity: 1;
-            visibility: visible;
-            transform: translateY(0);
-        }
-
-        .back-to-top:hover {
-            background: linear-gradient(135deg, rgba(37, 99, 235, 0.2) 0%, rgba(37, 99, 235, 0.3) 100%);
-            border-color: rgba(37, 99, 235, 0.5);
-            transform: translateY(-5px) scale(1.1);
-        }
-
-        .back-to-top i {
-            color: #ffffff;
-            font-size: 1.25rem;
-            animation: bounce-up 2s ease-in-out infinite;
-        }
-
-        @keyframes bounce-up {
-
-            0%,
-            100% {
-                transform: translateY(0);
-            }
-
-            50% {
-                transform: translateY(-4px);
-            }
-        }
-
-        .mobile-overlay {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.7);
-            z-index: 1001;
-            opacity: 0;
-            transition: opacity 0.3s ease;
-            pointer-events: none;
-        }
-
-        .mobile-overlay.active {
-            opacity: 1;
-            pointer-events: auto;
-        }
-
-        /* Responsive */
-        @media (max-width: 991px) {
-            .mobile-top-navbar {
-                display: block;
-            }
-
-            .sidebar {
-                transform: translateX(-100%);
-            }
-
-            .sidebar.show {
-                transform: translateX(0);
-            }
-
-            .sidebar-close-btn {
-                display: flex;
-            }
-
-            .mobile-overlay {
-                display: block;
-            }
-
-            .main-content {
-                margin-left: 0;
-                padding: 2rem 1.5rem;
-                margin-top: 70px;
-            }
-
-            .about-title {
-                font-size: 2.25rem;
-            }
-
-            .language-switcher {
-                display: none;
-            }
-
-            .tab-navigation {
-                margin-left: -1.5rem;
-                margin-right: -1.5rem;
-                padding: 0 1.5rem;
-            }
-
-            .cv-section {
-                padding: 1.5rem;
-            }
-
-            .cv-buttons {
-                flex-direction: row;
-            }
-
-            .btn {
-                width: auto;
-                flex: 1;
-                min-width: 0;
-                justify-content: center;
-            }
-
-            .content-card {
-                padding: 1.5rem;
-            }
-
-            .timeline-item {
-                padding: 1.5rem;
-            }
-
-            .timeline-header {
-                flex-direction: row;
-            }
-
-            .timeline-date {
-                margin-left: 0;
-                margin-top: 0.5rem;
-            }
-        }
-
-        @media (max-width: 576px) {
-            .about-title {
-                font-size: 1.875rem;
-            }
-
-            .tab-item {
-                padding: 0.75rem 0.875rem;
-                font-size: 0.8125rem;
-            }
-
-            .timeline-logo {
-                width: 48px;
-                height: 48px;
-            }
-
-            .timeline-meta {
-                flex-direction: column;
-                align-items: flex-start;
-                gap: 0.5rem;
-            }
-
-            .back-to-top {
-                bottom: 1.5rem;
-                right: 1.5rem;
-                width: 45px;
-                height: 45px;
-            }
-
-            .back-to-top i {
-                font-size: 1.125rem;
-            }
-
-            .content-title {
-                font-size: 1.5rem;
-            }
-        }
-    </style>
+    <link rel="stylesheet" href="css/style.css">
 </head>
 
 <body>
@@ -1445,7 +341,7 @@
                 <!-- Experience 1: Copilot ID -->
                 <div class="timeline-item">
                     <div class="timeline-header">
-                        <img src="https://via.placeholder.com/56" alt="Copilot ID" class="timeline-logo">
+                        <img src="" alt="Copilot ID" class="timeline-logo">
                         <div class="timeline-info">
                             <div class="timeline-title">
                                 Copilot ID
@@ -1506,7 +402,7 @@
                 <!-- Experience 2: IKA-PPIM 2021 -->
                 <div class="timeline-item">
                     <div class="timeline-header">
-                        <img src="https://via.placeholder.com/56" alt="IKA-PPIM 2021" class="timeline-logo">
+                        <img src="" alt="IKA-PPIM 2021" class="timeline-logo">
                         <div class="timeline-info">
                             <div class="timeline-title">
                                 IKA-PPIM 2021
@@ -1544,7 +440,7 @@
                 <!-- Experience 3: Coding Camp -->
                 <div class="timeline-item">
                     <div class="timeline-header">
-                        <img src="https://via.placeholder.com/56" alt="DBS Foundation" class="timeline-logo">
+                        <img src="" alt="DBS Foundation" class="timeline-logo">
                         <div class="timeline-info">
                             <div class="timeline-title">
                                 Coding Camp powered by DBS Foundation
@@ -1637,7 +533,7 @@
                     </div>
                 </div>
 
-                <!-- Add other experiences similarly -->
+                <!-- Add more experiences as needed -->
             </div>
 
             <!-- Educations Section -->
@@ -1645,7 +541,7 @@
                 <!-- Education 1 -->
                 <div class="timeline-item">
                     <div class="timeline-header">
-                        <img src="https://via.placeholder.com/56" alt="UTY" class="timeline-logo">
+                        <img src="" alt="UTY" class="timeline-logo">
                         <div class="timeline-info">
                             <div class="timeline-title">Informatics in Intelligence Systems (S.Kom.)</div>
                             <div class="timeline-company">Universitas Teknologi Yogyakarta</div>
@@ -1677,7 +573,7 @@
                 <!-- Education 2 -->
                 <div class="timeline-item">
                     <div class="timeline-header">
-                        <img src="https://via.placeholder.com/56" alt="MAN" class="timeline-logo">
+                        <img src="" alt="MAN" class="timeline-logo">
                         <div class="timeline-info">
                             <div class="timeline-title">Senior High School (Natural Science)</div>
                             <div class="timeline-company">MAS Al Mukmin Ngruki</div>
@@ -1702,58 +598,7 @@
                     </div>
                 </div>
 
-                <!-- Education 3 -->
-                <div class="timeline-item">
-                    <div class="timeline-header">
-                        <img src="https://via.placeholder.com/56" alt="MTs" class="timeline-logo">
-                        <div class="timeline-info">
-                            <div class="timeline-title">Junior High School</div>
-                            <div class="timeline-company">MTsS Islam Ngruki</div>
-                            <div class="timeline-location">
-                                <i class="bi bi-geo-alt"></i>
-                                <span>Surakarta, Central Java</span>
-                            </div>
-                        </div>
-                        <div class="timeline-date">2015 - 2018</div>
-                    </div>
-                    <button class="achievements-toggle" onclick="toggleAchievements(this)">
-                        <i class="bi bi-chevron-down"></i>
-                        <span>Show Achievements</span>
-                    </button>
-                    <div class="achievements-list">
-                        <div class="achievement-item">Completed comprehensive Islamic and general education curriculum.
-                        </div>
-                        <div class="achievement-item">Built strong foundation in Arabic language and Quranic studies.
-                        </div>
-                        <div class="achievement-item">Participated in various academic and religious competitions.</div>
-                    </div>
-                </div>
-
-                <!-- Education 4 -->
-                <div class="timeline-item">
-                    <div class="timeline-header">
-                        <img src="https://via.placeholder.com/56" alt="SD" class="timeline-logo">
-                        <div class="timeline-info">
-                            <div class="timeline-title">Elementary School</div>
-                            <div class="timeline-company">SD IT Al Mannan</div>
-                            <div class="timeline-location">
-                                <i class="bi bi-geo-alt"></i>
-                                <span>Boyolali, Central Java</span>
-                            </div>
-                        </div>
-                        <div class="timeline-date">2009 - 2015</div>
-                    </div>
-                    <button class="achievements-toggle" onclick="toggleAchievements(this)">
-                        <i class="bi bi-chevron-down"></i>
-                        <span>Show Achievements</span>
-                    </button>
-                    <div class="achievements-list">
-                        <div class="achievement-item">Established early foundation in Islamic values and academic
-                            excellence.</div>
-                        <div class="achievement-item">Participated in character-building programs and extracurricular
-                            activities.</div>
-                    </div>
-                </div>
+                <!-- Add more educations as needed -->
             </div>
 
             <!-- Certifications Section -->
@@ -1775,7 +620,7 @@
                 <!-- Certification 1 -->
                 <div class="timeline-item">
                     <div class="timeline-header">
-                        <img src="https://via.placeholder.com/56" alt="DBS" class="timeline-logo">
+                        <img src="" alt="DBS" class="timeline-logo">
                         <div class="timeline-info">
                             <div class="timeline-title">Certificate of Appreciation for Machine Learning Mentoring</div>
                             <div class="timeline-company">Coding Camp powered by DBS Foundation</div>
@@ -1805,7 +650,7 @@
                 <!-- Certification 2 -->
                 <div class="timeline-item">
                     <div class="timeline-header">
-                        <img src="https://via.placeholder.com/56" alt="LinkedIn" class="timeline-logo">
+                        <img src="" alt="LinkedIn" class="timeline-logo">
                         <div class="timeline-info">
                             <div class="timeline-title">Crafting REST APIs with Django</div>
                             <div class="timeline-company">LinkedIn Learning</div>
@@ -1832,7 +677,7 @@
                 <!-- Certification 3 -->
                 <div class="timeline-item">
                     <div class="timeline-header">
-                        <img src="https://via.placeholder.com/56" alt="Dicoding" class="timeline-logo">
+                        <img src="" alt="Dicoding" class="timeline-logo">
                         <div class="timeline-info">
                             <div class="timeline-title">Applied Machine Learning</div>
                             <div class="timeline-company">Dicoding Indonesia</div>
@@ -1844,7 +689,7 @@
                             <i class="bi bi-chevron-down"></i>
                             <span>Show Achievements</span>
                         </button>
-                        <a href="#" class="btn btn-outline">
+                        <a href="#" class="btn btn-outline achievements-toggle">
                             <i class="bi bi-box-arrow-up-right"></i>
                             <span>View Credential</span>
                         </a>
@@ -1859,7 +704,7 @@
                 <!-- Certification 4 -->
                 <div class="timeline-item">
                     <div class="timeline-header">
-                        <img src="https://via.placeholder.com/56" alt="Dicoding" class="timeline-logo">
+                        <img src="" alt="Dicoding" class="timeline-logo">
                         <div class="timeline-info">
                             <div class="timeline-title">Learning Data Analysis with Python</div>
                             <div class="timeline-company">Dicoding Indonesia</div>
@@ -1871,7 +716,7 @@
                             <i class="bi bi-chevron-down"></i>
                             <span>Show Achievements</span>
                         </button>
-                        <a href="#" class="btn btn-outline">
+                        <a href="#" class="btn btn-outline achievements-toggle">
                             <i class="bi bi-box-arrow-up-right"></i>
                             <span>View Credential</span>
                         </a>
@@ -1885,7 +730,7 @@
                 <!-- Certification 5 -->
                 <div class="timeline-item">
                     <div class="timeline-header">
-                        <img src="https://via.placeholder.com/56" alt="LinkedIn" class="timeline-logo">
+                        <img src="" alt="LinkedIn" class="timeline-logo">
                         <div class="timeline-info">
                             <div class="timeline-title">Building a Portfolio with Django</div>
                             <div class="timeline-company">LinkedIn Learning</div>
@@ -1897,7 +742,7 @@
                             <i class="bi bi-chevron-down"></i>
                             <span>Show Achievements</span>
                         </button>
-                        <a href="#" class="btn btn-outline">
+                        <a href="#" class="btn btn-outline achievements-toggle">
                             <i class="bi bi-box-arrow-up-right"></i>
                             <span>View Credential</span>
                         </a>
@@ -1911,7 +756,7 @@
                 <!-- Certification 6 -->
                 <div class="timeline-item">
                     <div class="timeline-header">
-                        <img src="https://via.placeholder.com/56" alt="RapidMiner" class="timeline-logo">
+                        <img src="" alt="RapidMiner" class="timeline-logo">
                         <div class="timeline-info">
                             <div class="timeline-title">Machine Learning Professional Certification</div>
                             <div class="timeline-company">Altair RapidMiner</div>
@@ -1923,7 +768,7 @@
                             <i class="bi bi-chevron-down"></i>
                             <span>Show Achievements</span>
                         </button>
-                        <a href="#" class="btn btn-outline">
+                        <a href="#" class="btn btn-outline achievements-toggle">
                             <i class="bi bi-box-arrow-up-right"></i>
                             <span>View Credential</span>
                         </a>
@@ -1938,7 +783,7 @@
                 <!-- Certification 7 -->
                 <div class="timeline-item">
                     <div class="timeline-header">
-                        <img src="https://via.placeholder.com/56" alt="RapidMiner" class="timeline-logo">
+                        <img src="" alt="RapidMiner" class="timeline-logo">
                         <div class="timeline-info">
                             <div class="timeline-title">Data Engineering Professional Certification</div>
                             <div class="timeline-company">Altair RapidMiner</div>
@@ -1950,7 +795,7 @@
                             <i class="bi bi-chevron-down"></i>
                             <span>Show Achievements</span>
                         </button>
-                        <a href="#" class="btn btn-outline">
+                        <a href="#" class="btn btn-outline achievements-toggle">
                             <i class="bi bi-box-arrow-up-right"></i>
                             <span>View Credential</span>
                         </a>
@@ -1969,182 +814,9 @@
         <i class="bi bi-arrow-up"></i>
     </button>
 
+    <!-- Scripts -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script>
-        // Command Palette Functions
-        function openCommandPalette() {
-            const palette = document.getElementById('commandPalette');
-            palette.classList.add('active');
-            document.getElementById('commandSearchInput').focus();
-            document.body.style.overflow = 'hidden';
-        }
-
-        function closeCommandPalette(event) {
-            if (event && event.target.id !== 'commandPalette') return;
-            const palette = document.getElementById('commandPalette');
-            palette.classList.remove('active');
-            document.body.style.overflow = '';
-        }
-
-        // Keyboard shortcuts
-        document.addEventListener('keydown', function (e) {
-            // Cmd/Ctrl + K to open command palette
-            if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
-                e.preventDefault();
-                openCommandPalette();
-            }
-            // Escape to close command palette
-            if (e.key === 'Escape') {
-                closeCommandPalette(e);
-            }
-        });
-
-        // Command palette search
-        document.getElementById('commandSearchInput').addEventListener('input', function (e) {
-            const query = e.target.value.toLowerCase();
-            const items = document.querySelectorAll('.command-item');
-            const sections = document.querySelectorAll('.command-section');
-
-            items.forEach(item => {
-                const text = item.querySelector('.command-item-text').textContent.toLowerCase();
-                if (text.includes(query)) {
-                    item.style.display = 'flex';
-                } else {
-                    item.style.display = 'none';
-                }
-            });
-
-            // Hide sections if all items are hidden
-            sections.forEach(section => {
-                const visibleItems = section.querySelectorAll('.command-item[style="display: flex;"]');
-                if (visibleItems.length === 0 && query !== '') {
-                    section.style.display = 'none';
-                } else {
-                    section.style.display = 'block';
-                }
-            });
-        });
-
-        // Mobile menu toggle
-        function toggleMobileMenu() {
-            const sidebar = document.getElementById('sidebar');
-            const overlay = document.getElementById('mobileOverlay');
-            sidebar.classList.toggle('show');
-            overlay.classList.toggle('active');
-            if (sidebar.classList.contains('show')) {
-                document.body.style.overflow = 'hidden';
-            } else {
-                document.body.style.overflow = '';
-            }
-        }
-
-        // Close mobile menu when clicking nav item
-        function closeMobileMenu(event) {
-            if (window.innerWidth <= 991) {
-                const sidebar = document.getElementById('sidebar');
-                if (sidebar.classList.contains('show')) {
-                    toggleMobileMenu();
-                }
-            }
-        }
-
-        // Language toggle
-        let currentLanguage = 'en';
-        function toggleLanguage() {
-            currentLanguage = currentLanguage === 'en' ? 'id' : 'en';
-            document.getElementById('currentLang').textContent = currentLanguage.toUpperCase();
-            document.body.style.opacity = '0.8';
-            setTimeout(() => {
-                document.body.style.opacity = '1';
-            }, 150);
-        }
-
-        // Back to Top
-        const backToTopButton = document.getElementById('backToTop');
-        window.addEventListener('scroll', () => {
-            if (window.pageYOffset > 300) {
-                backToTopButton.classList.add('show');
-            } else {
-                backToTopButton.classList.remove('show');
-            }
-        });
-
-        function scrollToTop() {
-            window.scrollTo({
-                top: 0,
-                behavior: 'smooth'
-            });
-        }
-
-        // Tab Navigation
-        const tabs = document.querySelectorAll('.tab-item');
-        const sections = {
-            'intro': document.getElementById('intro-section'),
-            'experiences': document.getElementById('experiences-section'),
-            'educations': document.getElementById('educations-section'),
-            'certifications': document.getElementById('certifications-section')
-        };
-
-        tabs.forEach(tab => {
-            tab.addEventListener('click', (e) => {
-                e.preventDefault();
-                // Remove active class from all tabs
-                tabs.forEach(t => t.classList.remove('active'));
-                // Add active class to clicked tab
-                tab.classList.add('active');
-                // Hide all sections
-                Object.values(sections).forEach(section => {
-                    section.style.display = 'none';
-                });
-                // Show selected section
-                const tabName = tab.getAttribute('data-tab');
-                if (sections[tabName]) {
-                    sections[tabName].style.display = 'block';
-                }
-                // Scroll to top of content smoothly
-                window.scrollTo({
-                    top: 0,
-                    behavior: 'smooth'
-                });
-            });
-        });
-
-        // Toggle Achievements
-        function toggleAchievements(button) {
-            const credentialActions = button.parentElement;
-            const achievementsList = credentialActions.nextElementSibling;
-            const icon = button.querySelector('i');
-            const text = button.querySelector('span');
-            if (achievementsList && achievementsList.classList.contains('achievements-list')) {
-                if (achievementsList.classList.contains('show')) {
-                    achievementsList.classList.remove('show');
-                    icon.className = 'bi bi-chevron-down';
-                    text.textContent = 'Show Achievements';
-                } else {
-                    achievementsList.classList.add('show');
-                    icon.className = 'bi bi-chevron-up';
-                    text.textContent = 'Hide Achievements';
-                }
-            }
-        }
-
-        // Smooth scroll for anchor links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                const href = this.getAttribute('href');
-                if (href !== '#' && !this.classList.contains('tab-item')) {
-                    e.preventDefault();
-                    const target = document.querySelector(href);
-                    if (target) {
-                        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                    }
-                }
-            });
-        });
-
-        // Initialize
-        document.body.style.transition = 'opacity 0.2s ease';
-    </script>
+    <script src="js/script.js"></script>
 </body>
 
 </html>
