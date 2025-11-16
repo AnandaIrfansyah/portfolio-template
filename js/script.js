@@ -17,6 +17,32 @@ function closeCommandPalette(event) {
     const palette = document.getElementById('commandPalette');
     palette.classList.remove('active');
     document.body.style.overflow = '';
+    
+    // Reset search
+    const searchInput = document.getElementById('commandSearchInput');
+    if (searchInput) {
+        searchInput.value = '';
+        showAllCommandItems();
+    }
+}
+
+// Show all command items
+function showAllCommandItems() {
+    const items = document.querySelectorAll('.command-item');
+    const sections = document.querySelectorAll('.command-section');
+    const noResults = document.getElementById('commandNoResults');
+    
+    items.forEach(item => {
+        item.style.display = 'flex';
+    });
+    
+    sections.forEach(section => {
+        section.style.display = 'block';
+    });
+    
+    if (noResults) {
+        noResults.style.display = 'none';
+    }
 }
 
 // ==========================================
@@ -35,17 +61,19 @@ document.addEventListener('keydown', function (e) {
 });
 
 // ==========================================
-// COMMAND PALETTE SEARCH
+// COMMAND PALETTE SEARCH WITH NO RESULTS
 // ==========================================
 document.getElementById('commandSearchInput')?.addEventListener('input', function (e) {
     const query = e.target.value.toLowerCase();
     const items = document.querySelectorAll('.command-item');
     const sections = document.querySelectorAll('.command-section');
+    let hasResults = false;
 
     items.forEach(item => {
         const text = item.querySelector('.command-item-text').textContent.toLowerCase();
         if (text.includes(query)) {
             item.style.display = 'flex';
+            hasResults = true;
         } else {
             item.style.display = 'none';
         }
@@ -60,6 +88,16 @@ document.getElementById('commandSearchInput')?.addEventListener('input', functio
             section.style.display = 'block';
         }
     });
+
+    // Show/hide no results message
+    const noResults = document.getElementById('commandNoResults');
+    if (noResults) {
+        if (!hasResults && query !== '') {
+            noResults.style.display = 'block';
+        } else {
+            noResults.style.display = 'none';
+        }
+    }
 });
 
 // ==========================================
@@ -155,6 +193,7 @@ if (projectSearchInput) {
     projectSearchInput.addEventListener('input', function (e) {
         const query = e.target.value.toLowerCase();
         const projectCards = document.querySelectorAll('.project-card');
+        let hasResults = false;
 
         projectCards.forEach(card => {
             const title = card.querySelector('.project-title')?.textContent.toLowerCase() || '';
@@ -162,10 +201,14 @@ if (projectSearchInput) {
             
             if (title.includes(query) || desc.includes(query)) {
                 card.parentElement.style.display = 'block';
+                hasResults = true;
             } else {
                 card.parentElement.style.display = 'none';
             }
         });
+
+        // Show/hide no results message
+        showNoResultsMessage('projectNoResults', hasResults, query);
     });
 }
 
@@ -177,6 +220,7 @@ if (blogSearchInput) {
     blogSearchInput.addEventListener('input', function (e) {
         const query = e.target.value.toLowerCase();
         const blogCards = document.querySelectorAll('.blog-card');
+        let hasResults = false;
 
         blogCards.forEach(card => {
             const title = card.querySelector('.blog-title')?.textContent.toLowerCase() || '';
@@ -185,11 +229,29 @@ if (blogSearchInput) {
 
             if (title.includes(query) || excerpt.includes(query) || tags.includes(query)) {
                 card.parentElement.style.display = 'block';
+                hasResults = true;
             } else {
                 card.parentElement.style.display = 'none';
             }
         });
+
+        // Show/hide no results message
+        showNoResultsMessage('blogNoResults', hasResults, query);
     });
+}
+
+// ==========================================
+// NO RESULTS MESSAGE HELPER
+// ==========================================
+function showNoResultsMessage(elementId, hasResults, query) {
+    const noResults = document.getElementById(elementId);
+    if (noResults) {
+        if (!hasResults && query !== '') {
+            noResults.style.display = 'block';
+        } else {
+            noResults.style.display = 'none';
+        }
+    }
 }
 
 // ==========================================
@@ -300,5 +362,103 @@ document.addEventListener('DOMContentLoaded', function() {
         introSection.style.display = 'block';
     }
     
+    // Initialize project detail gallery if exists
+    initProjectGallery();
+    
     console.log('Portfolio initialized successfully');
 });
+
+// ==========================================
+// PROJECT DETAIL GALLERY
+// ==========================================
+let currentImageIndex = 0;
+const galleryImages = [
+    'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=1200&h=600&fit=crop',
+    'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=1200&h=600&fit=crop',
+    'https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=1200&h=600&fit=crop',
+    'https://images.unsplash.com/photo-1551650975-87deedd944c3?w=1200&h=600&fit=crop',
+    'https://images.unsplash.com/photo-1563986768609-322da13575f3?w=1200&h=600&fit=crop'
+];
+
+function initProjectGallery() {
+    const mainImg = document.getElementById('mainGalleryImg');
+    const currentIndexEl = document.getElementById('currentImageIndex');
+    const totalImagesEl = document.getElementById('totalImages');
+    
+    if (mainImg && currentIndexEl && totalImagesEl) {
+        totalImagesEl.textContent = galleryImages.length;
+        updateGalleryImage();
+        
+        // Keyboard navigation
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'ArrowLeft') {
+                previousImage();
+            } else if (e.key === 'ArrowRight') {
+                nextImage();
+            }
+        });
+    }
+}
+
+function updateGalleryImage() {
+    const mainImg = document.getElementById('mainGalleryImg');
+    const currentIndexEl = document.getElementById('currentImageIndex');
+    
+    if (mainImg && currentIndexEl) {
+        mainImg.style.opacity = '0.5';
+        
+        setTimeout(() => {
+            mainImg.src = galleryImages[currentImageIndex];
+            currentIndexEl.textContent = currentImageIndex + 1;
+            mainImg.style.opacity = '1';
+        }, 200);
+    }
+}
+
+function previousImage() {
+    currentImageIndex = (currentImageIndex - 1 + galleryImages.length) % galleryImages.length;
+    updateGalleryImage();
+}
+
+function nextImage() {
+    currentImageIndex = (currentImageIndex + 1) % galleryImages.length;
+    updateGalleryImage();
+}
+
+// Make gallery functions available globally
+window.previousImage = previousImage;
+window.nextImage = nextImage;
+
+// ==========================================
+// BLOG SHARE FUNCTIONS
+// ==========================================
+function shareOnTwitter() {
+    const title = document.querySelector('.blog-detail-title')?.textContent || 'Check this out!';
+    const url = window.location.href;
+    window.open(`https://twitter.com/intent/tweet?text=${encodeURIComponent(title)}&url=${encodeURIComponent(url)}`, '_blank', 'width=600,height=400');
+}
+
+function shareOnLinkedIn() {
+    const url = window.location.href;
+    window.open(`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(url)}`, '_blank', 'width=600,height=400');
+}
+
+function shareOnFacebook() {
+    const url = window.location.href;
+    window.open(`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}`, '_blank', 'width=600,height=400');
+}
+
+function copyLink() {
+    const url = window.location.href;
+    navigator.clipboard.writeText(url).then(() => {
+        alert('Link copied to clipboard!');
+    }).catch(err => {
+        console.error('Failed to copy:', err);
+    });
+}
+
+// Make share functions available globally
+window.shareOnTwitter = shareOnTwitter;
+window.shareOnLinkedIn = shareOnLinkedIn;
+window.shareOnFacebook = shareOnFacebook;
+window.copyLink = copyLink;
